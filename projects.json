@@ -54,7 +54,8 @@
     "description": "A social campaign for Saint & Summer built around one simple idea: \"Try Something New Today.\" An expression of a creative soul finding genuine happiness through making things.",
     "thumbnail": "assets/images/thumbnail-saint.jpg",
     "hero": "assets/images/hero-saint.jpg",
-    "video": "assets/videos/saint.mp4",
+    "youtube": "QRlYIU9wdeo",
+    "portrait": true,
     "tags": ["video", "brand", "campaign"]
   },
   {
