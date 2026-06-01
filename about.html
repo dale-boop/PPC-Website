@@ -506,12 +506,109 @@ footer {
 }
 .footer-links a:hover { color: var(--muted); }
 .footer-copy { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--charcoal); }
+
+/* =============================================
+   HAMBURGER
+============================================= */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+  z-index: 200;
+}
+.nav-burger span {
+  display: block;
+  width: 100%; height: 2px;
+  background: var(--cream);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+#nav.on-cream .nav-burger span { background: var(--ink); }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-drawer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+}
+.nav-drawer a:hover { color: var(--teal); }
+.nav-drawer .drawer-cta {
+  font-size: 1rem;
+  background: var(--highlight);
+  color: var(--dark);
+  padding: 0.9rem 2.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 900px) {
+  #nav { padding: 0 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+
+  .hero { padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem; }
+  .hero-headline { font-size: clamp(2.8rem, 10vw, 4.5rem); }
+  .hero-sub { font-size: 0.95rem; }
+
+  .studio { padding: 4rem 1.5rem; }
+  .studio-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+  .approach { padding: 4rem 1.5rem; }
+  .approach-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .approach-steps { gap: 2rem; }
+
+  .team { padding: 4rem 1.5rem; }
+  .team-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; gap: 1.2rem; }
+  .footer-links { flex-wrap: wrap; gap: 1.2rem; }
+}
+
+@media (max-width: 600px) {
+  .hero-headline { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+  .section-title { font-size: 2rem; }
+  .details-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
 <!-- PAGE TRANSITION -->
 <div id="page-transition"></div>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="work.html">Our Work</a>
+  <a href="index.html#contact" class="drawer-cta">Let's Talk</a>
+</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -522,6 +619,9 @@ footer {
     <li><a href="work.html">Our Work</a></li>
   </ul>
   <a href="index.html#contact" class="nav-cta">Let's Talk</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -783,6 +883,22 @@ document.querySelectorAll('a[href]').forEach(link => {
     const target = link.href;
     overlay.classList.add('leaving');
     setTimeout(() => { window.location.href = target; }, 560);
+  });
+});
+
+/* Hamburger menu */
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-drawer');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  drawer.classList.toggle('open');
+  document.body.classList.toggle('no-scroll');
+});
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.classList.remove('no-scroll');
   });
 });
 </script>

@@ -695,30 +695,90 @@ footer {
 }
 
 /* =============================================
+   HAMBURGER
+============================================= */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+  z-index: 200;
+}
+.nav-burger span {
+  display: block;
+  width: 100%; height: 2px;
+  background: var(--cream);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-drawer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+}
+.nav-drawer a:hover { color: var(--teal); }
+.nav-drawer .drawer-cta {
+  font-size: 1rem;
+  background: var(--highlight);
+  color: var(--dark);
+  padding: 0.9rem 2.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+/* =============================================
    RESPONSIVE
 ============================================= */
 @media (max-width: 900px) {
-  .services-intro { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 2rem; }
+  #nav { padding: 0 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+
+  .hero { padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem; }
+  .hero-headline { font-size: clamp(2.8rem, 10vw, 4.5rem); }
+  .services-intro { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.5rem; }
   .service-inner { grid-template-columns: 1fr; }
   .service-inner.flip .service-info { order: 1; }
   .service-inner.flip .service-visual { order: 2; }
-  .service-info, .service-inner.flip .service-info { padding: 4rem 2rem; }
-  .service-visual { min-height: 340px; }
-  .hero { padding: calc(var(--nav-h) + 2rem) 2rem 4rem; }
-  #nav { padding: 0 2rem; }
-  .section-pad { padding: 5rem 2rem; }
-  .process { padding: 5rem 2rem; }
+  .service-info, .service-inner.flip .service-info { padding: 4rem 1.5rem; }
+  .service-visual { min-height: 300px; }
+  .section-pad { padding: 5rem 1.5rem; }
+  .process { padding: 5rem 1.5rem; }
   .process-steps { grid-template-columns: 1fr 1fr; }
-  .process-step { padding: 2.5rem 2rem 2.5rem 0; }
+  .process-step { padding: 2.5rem 1.5rem 2.5rem 0; }
   .process-header { flex-direction: column; align-items: flex-start; }
-  .cta-section { grid-template-columns: 1fr; padding: 5rem 2rem; }
-  footer { flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1.2rem; }
+  .cta-section { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; gap: 1.2rem; }
   .footer-links { flex-wrap: wrap; gap: 1.2rem; }
 }
 @media (max-width: 600px) {
+  .hero-headline { font-size: clamp(2.4rem, 12vw, 3.4rem); }
   .process-steps { grid-template-columns: 1fr; }
-  .hero-headline { font-size: 3.4rem; }
-  .service-name { font-size: 2.8rem; }
+  .service-name { font-size: 2.4rem; }
 }
 </style>
 </head>
@@ -726,6 +786,14 @@ footer {
 
 <!-- PAGE TRANSITION -->
 <div id="page-transition"></div>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="work.html">Our Work</a>
+  <a href="#contact" class="drawer-cta">Let's Talk</a>
+</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -736,6 +804,9 @@ footer {
     <li><a href="work.html">Our Work</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Let's Talk</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -998,6 +1069,22 @@ document.querySelectorAll('a[href]').forEach(link => {
     const target = link.href;
     overlay.classList.add('leaving');
     setTimeout(() => { window.location.href = target; }, 560);
+  });
+});
+
+/* Hamburger menu */
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-drawer');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  drawer.classList.toggle('open');
+  document.body.classList.toggle('no-scroll');
+});
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.classList.remove('no-scroll');
   });
 });
 </script>
