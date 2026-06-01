@@ -11,6 +11,17 @@
     "tags": ["video", "documentary"]
   },
   {
+    "id": "pam-golding-property-showcase",
+    "client": "Pam Golding",
+    "title": "Property Showcase",
+    "type": "Corporate",
+    "date": "March 2026",
+    "description": "Part of a series of videos Paper Plane Creative provides for long-standing client, Pam Golding. A collaboration with the amazing Carol Reynolds as she guides viewers through some incredible properties within the Umhlanga/Umdloti area.",
+    "thumbnail": "assets/images/thumbnail-pam.jpg",
+    "hero": "assets/images/hero-pam.jpg",
+    "tags": ["corporate", "video"]
+  },
+  {
     "id": "hamediehs-ark-of-hope",
     "client": "Hamediehs",
     "title": "Ark of Hope",
@@ -111,16 +122,5 @@
       "assets/images/styles-4.jpg"
     ],
     "tags": ["photography", "corporate", "brand"]
-  },
-  {
-    "id": "pam-golding-property-showcase",
-    "client": "Pam Golding",
-    "title": "Property Showcase",
-    "type": "Corporate",
-    "date": "March 2026",
-    "description": "Part of a series of videos Paper Plane Creative provides for long-standing client, Pam Golding. A collaboration with the amazing Carol Reynolds as she guides viewers through some incredible properties within the Umhlanga/Umdloti area.",
-    "thumbnail": "assets/images/thumbnail-pam.jpg",
-    "hero": "assets/images/hero-pam.jpg",
-    "tags": ["corporate", "video"]
   }
 ]
