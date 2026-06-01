@@ -623,6 +623,7 @@ img { display: block; max-width: 100%; }
 }
 .lightbox-media.gallery-mode .lightbox-gallery { display: block; }
 .lightbox-media.gallery-mode .lightbox-play-btn { display: none; }
+.lightbox-media.gallery-mode .lightbox-gallery-open-btn { display: none; }
 .lightbox-gallery-img {
   width: 100%; height: 100%;
   object-fit: contain;
@@ -1404,17 +1405,27 @@ function setupLightbox() {
         galleryCounter.textContent = `1 / ${p.gallery.length}`;
         mediaEl.classList.add('gallery-mode');
       };
-      document.getElementById('gallery-prev').onclick = (e) => {
-        e.stopPropagation();
-        galleryIndex = (galleryIndex - 1 + p.gallery.length) % p.gallery.length;
+      const showSlide = (idx) => {
+        galleryIndex = (idx + p.gallery.length) % p.gallery.length;
         galleryImg.src = p.gallery[galleryIndex];
         galleryCounter.textContent = `${galleryIndex + 1} / ${p.gallery.length}`;
       };
+
+      document.getElementById('gallery-prev').onclick = (e) => {
+        e.stopPropagation();
+        showSlide(galleryIndex - 1);
+      };
       document.getElementById('gallery-next').onclick = (e) => {
         e.stopPropagation();
-        galleryIndex = (galleryIndex + 1) % p.gallery.length;
-        galleryImg.src = p.gallery[galleryIndex];
-        galleryCounter.textContent = `${galleryIndex + 1} / ${p.gallery.length}`;
+        showSlide(galleryIndex + 1);
+      };
+
+      // Swipe support
+      let touchStartX = 0;
+      galleryEl.ontouchstart = (e) => { touchStartX = e.touches[0].clientX; };
+      galleryEl.ontouchend = (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) showSlide(diff > 0 ? galleryIndex + 1 : galleryIndex - 1);
       };
     } else {
       galleryOpenBtn.style.display = 'none';
