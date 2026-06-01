@@ -1,0 +1,76 @@
+[
+  {
+    "id": "zigzag-50-year-interviews",
+    "client": "ZIGZAG",
+    "title": "50 Year Interviews",
+    "type": "Documentary",
+    "date": "2025",
+    "description": "A documentary series produced for ZIGZAG, capturing 50 years of stories from the people who shaped South African surf culture.",
+    "thumbnail": "assets/images/thumbnail-zigzag.jpg",
+    "hero": "assets/images/hero-zigzag.jpg",
+    "tags": ["video", "documentary"]
+  },
+  {
+    "id": "hamediehs-ark-of-hope",
+    "client": "Hamediehs",
+    "title": "Ark of Hope",
+    "type": "Documentary",
+    "date": "August 2025",
+    "description": "A short documentary exploring how a 130-year-old Cape Flats rugby club transforms young lives through brotherhood, discipline, and hope.",
+    "thumbnail": "assets/images/thumbnail-hamediehs.jpg",
+    "hero": "assets/images/hero-hamediehs.jpg",
+    "video": "assets/videos/hamediehs.mp4",
+    "tags": ["video", "documentary"]
+  },
+  {
+    "id": "khanyisa-hope",
+    "client": "Khanyisa Developmental Centre",
+    "title": "Hope",
+    "type": "Documentary",
+    "date": "June 2025",
+    "description": "A hero film for Khanyisa — an organisation that gives families with children of differing ability a place to belong. We spent time with the incredible people who make it what it is, and let their stories do the talking.",
+    "thumbnail": "assets/images/thumbnail-khanyisa.jpg",
+    "hero": "assets/images/hero-khanyisa.jpg",
+    "video": "assets/videos/khanyisa.mp4",
+    "tags": ["documentary", "corporate"]
+  },
+  {
+    "id": "saint-summer-campaign",
+    "client": "Saint & Summer",
+    "title": "Try Something New Today Campaign",
+    "type": "Campaign",
+    "date": "June 2024",
+    "description": "A social campaign for Saint & Summer built around one simple idea: \"Try Something New Today.\" An expression of a creative soul finding genuine happiness through making things. From ideation and content strategy through to custom-produced music, Paper Plane was at the forefront of it all — because a campaign this alive deserved to be built that way from the ground up.",
+    "thumbnail": "assets/images/thumbnail-saint.jpg",
+    "hero": "assets/images/hero-saint.jpg",
+    "video": "assets/videos/saint.mp4",
+    "tags": ["video", "brand", "campaign"]
+  },
+  {
+    "id": "kingsley-heath-confidence",
+    "client": "Kingsley Heath",
+    "title": "Confidence Campaign Shoot",
+    "type": "Photography",
+    "date": "March 2026",
+    "description": "A showcase of stills from the Confidence shoot for Kingsley Heath — speaking to the inner confidence the brand carries and the people who embody it.",
+    "thumbnail": "assets/images/thumbnail-kingsley.jpg",
+    "hero": "assets/images/hero-kingsley.jpg",
+    "gallery": [
+      "assets/images/kingsley-01.jpg",
+      "assets/images/kingsley-02.jpg",
+      "assets/images/kingsley-03.jpg",
+      "assets/images/kingsley-04.jpg",
+      "assets/images/kingsley-05.jpg",
+      "assets/images/kingsley-06.jpg",
+      "assets/images/kingsley-07.jpg",
+      "assets/images/kingsley-08.jpg",
+      "assets/images/kingsley-09.jpg",
+      "assets/images/kingsley-10.jpg",
+      "assets/images/kingsley-11.jpg",
+      "assets/images/kingsley-12.jpg",
+      "assets/images/kingsley-13.jpg",
+      "assets/images/kingsley-14.jpg"
+    ],
+    "tags": ["photography", "campaign", "brand"]
+  }
+]

@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of brand video, commercial photography, and campaign content by Paper Plane Creative — a Durban-based production studio working with South African brands since 2022.">
+<title>Our Work — Brand Video & Photography Portfolio | Paper Plane Creative, Durban</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   RESET & BASE
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0f0f0f;
+  color: #eae6df;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body.no-scroll { overflow: hidden; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* =============================================
+   VARIABLES
+============================================= */
+:root {
+  --dark:       #0f0f0f;
+  --surface:    #181818;
+  --charcoal:   #2e2e2c;
+  --cream:      #eae6df;
+  --cream-dim:  #d9d5cd;
+  --ink:        #1c1a17;
+  --offwhite:   #eae6df;
+  --muted:      #888880;
+  --dim:        #484844;
+  --teal:       #51a6a7;
+  --amber:      #f1a13c; /* kept for reference */
+  --highlight:  #51a6a7; /* primary accent — change this one variable to retheme */
+  --nav-h:      76px;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =============================================
+   PAGE TRANSITION OVERLAY
+============================================= */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: #0f0f0f;
+  z-index: 9999;
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+#page-transition.leaving {
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+#page-transition.entering {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+.reveal-left.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* =============================================
+   NAV
+============================================= */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  background: rgba(15,15,15,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  color: var(--offwhite);
+  transition: color 0.3s;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.nav-logo img { height: 28px; width: auto; display: block; flex-shrink: 0; }
+.nav-logo .accent { color: var(--teal); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--offwhite); }
+.nav-links a.active {
+  color: var(--highlight);
+  border-bottom: 1px solid var(--highlight);
+  padding-bottom: 2px;
+}
+.nav-cta {
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--dark);
+  background: var(--highlight);
+  padding: 0.6rem 1.5rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* =============================================
+   UTILITIES
+============================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.95rem 2.2rem;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-teal { background: var(--highlight); color: var(--dark); }
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(234,230,223,0.25);
+}
+.btn-outline:hover { border-color: rgba(234,230,223,0.6); opacity: 1; }
+
+/* =============================================
+   HERO
+============================================= */
+.hero {
+  position: relative;
+  height: 88vh;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--nav-h) + 3rem) 4rem 5rem;
+  overflow: hidden;
+  background: var(--dark);
+}
+/* Teal glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 55%; height: 75%;
+  background: radial-gradient(ellipse at top right, rgba(81,166,167,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+/* Decorative letter */
+.hero-deco {
+  position: absolute;
+  top: -1rem; right: -2rem;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(16rem, 32vw, 30rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(255,255,255,0.025);
+  pointer-events: none;
+  user-select: none;
+}
+/* Hero background image */
+.hero-img-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  display: block;
+}
+.hero-img.active {
+  opacity: 0.85;
+}
+.hero-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.05) 40%, transparent 100%);
+  z-index: 1;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.4rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 2rem; height: 1px;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+.hero-headline {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(4rem, 8.5vw, 8rem);
+  line-height: 0.91;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  margin-bottom: 2.2rem;
+}
+.hero-headline .hl { color: var(--highlight); }
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.hero-sub {
+  max-width: 44ch;
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.75;
+}
+.hero-scroll {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dim);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding-bottom: 0.5rem;
+}
+
+/* =============================================
+   MARQUEE
+============================================= */
+.marquee {
+  overflow: hidden;
+  background: var(--highlight);
+  padding: 1.1rem 0;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 24s linear infinite;
+}
+.marquee-track span {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #eae6df;
+  padding: 0 0.4rem;
+}
+.marquee-track .sep { color: rgba(234,230,223,0.4); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* =============================================
+   WORK SECTION
+============================================= */
+.work-section {
+  background: var(--dark);
+  padding: 5rem 4rem 7rem;
+  min-height: 60vh;
+}
+
+/* ——— Filter bar ——— */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding-bottom: 0;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-right: 2rem;
+  flex-shrink: 0;
+}
+.filter-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0.8rem 1.4rem 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.filter-btn:hover { color: var(--muted); }
+.filter-btn.active {
+  color: var(--highlight);
+  border-bottom-color: var(--highlight);
+}
+
+/* ——— Project count ——— */
+.work-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.work-count {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.work-count span { color: var(--teal); }
+
+/* ——— Grid ——— */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  transition: opacity 0.3s;
+}
+.work-grid.filtering { opacity: 0.3; pointer-events: none; }
+
+/* Featured first item spans 2 cols */
+.work-card.featured {
+  grid-column: span 2;
+}
+
+.work-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--surface);
+  aspect-ratio: 16/10;
+}
+.work-card.featured { aspect-ratio: 16/9; }
+.work-card:focus { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* Card background */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s var(--ease-out);
+}
+.work-card:hover .card-bg { transform: scale(1.04); }
+
+/* Per-project colour backgrounds */
+.bg-zigzag     { background: linear-gradient(145deg, #081a14, #0d2318, #050f0b); }
+.bg-hamediehs  { background: linear-gradient(145deg, #0e0c08, #1a1508, #0a0904); }
+.bg-khanyisa   { background: linear-gradient(145deg, #0a0e18, #10162a, #060910); }
+.bg-saint      { background: linear-gradient(145deg, #1a1008, #241808, #100c04); }
+.bg-kingsley   { background: linear-gradient(145deg, #18100a, #241808, #0f0a06); }
+.bg-default    { background: linear-gradient(145deg, #111, #1a1a1a, #0d0d0d); }
+
+/* Card glow overlay per project */
+.bg-zigzag::after    { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 70% 30%, rgba(81,166,167,0.12) 0%, transparent 60%); }
+.bg-hamediehs::after { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 70% 30%, rgba(180,130,60,0.12) 0%, transparent 60%); }
+.bg-khanyisa::after  { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 70% 30%, rgba(80,100,200,0.12) 0%, transparent 60%); }
+.bg-saint::after     { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 70% 30%, rgba(241,161,60,0.12) 0%, transparent 60%); }
+
+/* Card image (when real thumbnails added) */
+.card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.4s, transform 0.7s var(--ease-out);
+  display: none; /* shown via JS if src present */
+}
+.work-card:hover .card-img { opacity: 0.5; }
+
+/* Card content */
+.card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  transition: background 0.35s;
+  z-index: 1;
+}
+.work-card:hover .card-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.1) 100%);
+}
+
+.card-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.4rem;
+  transform: translateY(4px);
+  transition: transform 0.35s var(--ease-out), opacity 0.35s;
+}
+.card-client {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(234,230,223,0.45);
+  margin-bottom: 0.3rem;
+}
+.card-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  text-transform: uppercase;
+  color: var(--offwhite);
+  line-height: 1.05;
+  transition: color 0.2s;
+}
+.work-card.featured .card-title { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+
+/* Hover action pill */
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 0.4rem 0.9rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+  width: fit-content;
+}
+.work-card:hover .card-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+.work-card:hover .card-type {
+  transform: translateY(0);
+}
+
+/* Date badge */
+.card-date {
+  position: absolute;
+  top: 1.4rem; right: 1.4rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(234,230,223,0.3);
+  z-index: 1;
+}
+
+/* ——— Empty state ——— */
+.work-empty {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+.work-empty.visible { display: block; }
+.work-empty-headline {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.8rem;
+}
+.work-empty p { font-size: 0.9rem; color: var(--dim); }
+
+/* =============================================
+   LIGHTBOX
+============================================= */
+.lightbox-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0);
+  z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: background 0.4s, opacity 0.4s;
+}
+.lightbox-overlay.open {
+  background: rgba(0,0,0,0.88);
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-box {
+  background: var(--surface);
+  width: 90%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(24px);
+  transition: transform 0.45s var(--ease-out);
+}
+.lightbox-overlay.open .lightbox-box { transform: translateY(0); }
+.lightbox-media {
+  aspect-ratio: 16/9;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.lightbox-media-bg {
+  width: 100%; height: 100%;
+}
+.lightbox-play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.lightbox-play-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+.lightbox-play-icon {
+  position: relative;
+  z-index: 1;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+  backdrop-filter: blur(4px);
+  pointer-events: all;
+  cursor: pointer;
+}
+.lightbox-play-icon svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: white;
+  margin-left: 0.2rem;
+}
+.lightbox-media:hover .lightbox-play-icon {
+  background: rgba(81,166,167,0.4);
+  transform: scale(1.08);
+}
+.lightbox-media.playing .lightbox-play-btn { display: none; }
+.lightbox-video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: none;
+  background: #000;
+}
+.lightbox-media.playing .lightbox-video { display: block; }
+
+/* Gallery */
+.lightbox-gallery {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #000;
+}
+.lightbox-media.gallery-mode .lightbox-gallery { display: block; }
+.lightbox-media.gallery-mode .lightbox-play-btn { display: none; }
+.lightbox-gallery-img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.lightbox-gallery-prev,
+.lightbox-gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 3rem; height: 3rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.2s;
+  backdrop-filter: blur(4px);
+}
+.lightbox-gallery-prev:hover,
+.lightbox-gallery-next:hover { background: rgba(81,166,167,0.5); }
+.lightbox-gallery-prev { left: 1rem; }
+.lightbox-gallery-next { right: 1rem; }
+.lightbox-gallery-counter {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.6);
+  z-index: 6;
+  background: rgba(0,0,0,0.4);
+  padding: 0.3rem 0.8rem;
+  backdrop-filter: blur(4px);
+}
+.lightbox-gallery-open-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+.lightbox-gallery-open-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+.lightbox-gallery-open-icon {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.6);
+  color: white;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.8rem;
+  backdrop-filter: blur(4px);
+  transition: background 0.3s;
+  pointer-events: all;
+  cursor: pointer;
+}
+.lightbox-media:hover .lightbox-gallery-open-icon { background: rgba(81,166,167,0.4); }
+.lightbox-body { padding: 2.8rem; }
+.lightbox-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+.lightbox-client {
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.lightbox-divider {
+  width: 1px; height: 0.9rem;
+  background: rgba(255,255,255,0.15);
+}
+.lightbox-type {
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.lightbox-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  line-height: 0.97;
+  margin-bottom: 0.6rem;
+}
+.lightbox-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  margin-bottom: 1.8rem;
+}
+.lightbox-desc {
+  font-size: 0.98rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.lightbox-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.lightbox-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(81,166,167,0.3);
+  padding: 0.3rem 0.8rem;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  width: 2.4rem; height: 2.4rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: var(--offwhite);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  z-index: 1;
+}
+.lightbox-close:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+
+/* =============================================
+   CTA SECTION
+============================================= */
+.cta-section {
+  background: var(--surface);
+  padding: 7rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.cta-headline {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  line-height: 0.93;
+  text-transform: uppercase;
+  color: var(--offwhite);
+}
+.cta-headline .hl { color: var(--highlight); }
+.cta-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 1.2rem;
+  max-width: 46ch;
+  line-height: 1.8;
+}
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* =============================================
+   YOUTUBE SECTION
+============================================= */
+.youtube-section {
+  background: #0a0a0a;
+  padding: 7rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.youtube-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.youtube-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.youtube-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.youtube-headline {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--offwhite);
+  text-transform: uppercase;
+}
+.youtube-headline .hl { color: var(--highlight); }
+.youtube-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 420px;
+  line-height: 1.6;
+}
+.youtube-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--highlight);
+  border: 1px solid rgba(81,166,167,0.4);
+  padding: 0.75rem 1.4rem;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.youtube-link:hover {
+  background: var(--highlight);
+  color: var(--dark);
+}
+.youtube-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.youtube-embed-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #111;
+}
+.youtube-embed-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+@media (max-width: 900px) {
+  .youtube-section { padding: 5rem 2rem; }
+  .youtube-header { flex-direction: column; align-items: flex-start; }
+}
+
+/* =============================================
+   FOOTER
+============================================= */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2.4rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.footer-logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  transition: color 0.2s;
+}
+.footer-logo:hover { color: var(--muted); }
+.footer-logo .accent { color: var(--teal); }
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--muted); }
+.footer-copy {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--charcoal);
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 1024px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .work-card.featured { grid-column: span 2; }
+}
+@media (max-width: 900px) {
+  #nav { padding: 0 2rem; }
+  .hero { padding: calc(var(--nav-h) + 2rem) 2rem 4rem; }
+  .work-section { padding: 4rem 2rem 5rem; }
+  .cta-section { grid-template-columns: 1fr; padding: 5rem 2rem; }
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1.2rem; }
+  .footer-links { flex-wrap: wrap; gap: 1.2rem; }
+  .filter-label { display: none; }
+}
+@media (max-width: 600px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .work-card.featured { grid-column: span 1; aspect-ratio: 16/10; }
+  .hero-headline { font-size: 3.4rem; }
+  .card-title { font-size: 1.4rem; }
+  .filter-btn { padding: 0.7rem 0.9rem; font-size: 0.65rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE TRANSITION -->
+<div id="page-transition"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Project details">
+  <div class="lightbox-box">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <div class="lightbox-media" id="lightbox-media">
+      <div class="lightbox-media-bg" id="lightbox-bg"></div>
+      <video class="lightbox-video" id="lightbox-video" controls playsinline></video>
+      <div class="lightbox-play-btn" id="lightbox-play-btn">
+        <div class="lightbox-play-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="lightbox-gallery-open-btn" id="lightbox-gallery-open-btn" style="display:none">
+        <div class="lightbox-gallery-open-icon">View Gallery</div>
+      </div>
+      <div class="lightbox-gallery" id="lightbox-gallery">
+        <img class="lightbox-gallery-img" id="lightbox-gallery-img" src="" alt="">
+        <button class="lightbox-gallery-prev" id="gallery-prev" aria-label="Previous">&#8592;</button>
+        <button class="lightbox-gallery-next" id="gallery-next" aria-label="Next">&#8594;</button>
+        <div class="lightbox-gallery-counter" id="gallery-counter"></div>
+      </div>
+    </div>
+    <div class="lightbox-body">
+      <div class="lightbox-eyebrow">
+        <p class="lightbox-client" id="lb-client"></p>
+        <div class="lightbox-divider"></div>
+        <p class="lightbox-type" id="lb-type"></p>
+      </div>
+      <h2 class="lightbox-title" id="lb-title"></h2>
+      <p class="lightbox-meta" id="lb-meta"></p>
+      <p class="lightbox-desc" id="lb-desc"></p>
+      <div class="lightbox-tags" id="lb-tags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="assets/images/logo.png" alt="Paper Plane Creative">PAPER PLANE <span class="accent">CREATIVE</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html" class="active">Our Work</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Let's Talk</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img-wrap" id="hero-slideshow">
+    <img class="hero-img active" src="assets/images/hero-zigzag.jpg" alt="" aria-hidden="true">
+    <img class="hero-img" src="assets/images/hero-hamediehs.jpg" alt="" aria-hidden="true">
+    <img class="hero-img" src="assets/images/hero-khanyisa.jpg" alt="" aria-hidden="true">
+    <img class="hero-img" src="assets/images/hero-saint.jpg" alt="" aria-hidden="true">
+  </div>
+  <div class="hero-deco" aria-hidden="true">WORK</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal">Selected Work · Durban &amp; Cape Town</p>
+    <h1 class="hero-headline reveal reveal-delay-1">
+      The Work<br>Speaks For<br><span class="hl">Itself.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub reveal reveal-delay-2">Brand films, photography, campaigns, and documentary — a selection of what we've made for brands we really believe in.</p>
+      <div class="hero-scroll reveal reveal-delay-3">Scroll</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Brand Video</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Photography</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Documentary</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Music Video</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Campaign</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Story Driven Media</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Brand Video</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Photography</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Documentary</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Music Video</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Campaign</span><span class="sep">&nbsp;•&nbsp;</span>
+    <span>Story Driven Media</span><span class="sep">&nbsp;•&nbsp;</span>
+  </div>
+</div>
+
+<!-- WORK GRID -->
+<section class="work-section" id="work">
+  <!-- Filter bar -->
+  <div class="filter-bar reveal" role="tablist" aria-label="Filter projects">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+    <button class="filter-btn" data-filter="video" role="tab" aria-selected="false">Video</button>
+    <button class="filter-btn" data-filter="photography" role="tab" aria-selected="false">Photography</button>
+    <button class="filter-btn" data-filter="campaign" role="tab" aria-selected="false">Campaign</button>
+    <button class="filter-btn" data-filter="documentary" role="tab" aria-selected="false">Documentary</button>
+    <button class="filter-btn" data-filter="music" role="tab" aria-selected="false">Music</button>
+  </div>
+
+  <!-- Project count -->
+  <div class="work-meta">
+    <p class="work-count"><span id="project-count">0</span> projects</p>
+  </div>
+
+  <!-- Grid -->
+  <div class="work-grid" id="work-grid">
+    <!-- Populated by JS -->
+    <div class="work-empty" id="work-empty">
+      <p class="work-empty-headline">Nothing here yet</p>
+      <p>No projects match this filter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- YOUTUBE -->
+<section class="youtube-section">
+  <div class="youtube-inner">
+    <div class="youtube-header">
+      <div class="youtube-header-left">
+        <span class="section-label reveal">On YouTube</span>
+        <h2 class="youtube-headline reveal reveal-delay-1">More Work.<br>On The <span class="hl">Channel.</span></h2>
+        <p class="youtube-sub reveal reveal-delay-2">Behind the scenes, full projects, and more — subscribe to see what we're working on as it happens.</p>
+      </div>
+      <a href="https://youtube.com/@PaperPlaneCreativeZA" target="_blank" rel="noopener" class="youtube-link reveal reveal-delay-2">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Visit Channel
+      </a>
+    </div>
+    <div class="youtube-embed-wrap reveal">
+      <iframe
+        src="https://www.youtube.com/embed/dSnh6WRimUY?rel=0&modestbranding=1"
+        title="Paper Plane Creative — Featured Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div>
+    <h2 class="cta-headline reveal-left">
+      Like What<br>You <span class="hl">See?</span>
+    </h2>
+    <p class="cta-sub reveal">We'd love to hear about your project. Drop us a line — we'll get back to you within one business day and we're really excited to see what you're building.</p>
+  </div>
+  <div class="cta-actions reveal">
+    <a href="index.html#contact" class="btn btn-teal">Start a Project</a>
+    <a href="services.html" class="btn btn-outline">Our Services</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">PAPER PLANE <span class="accent">CREATIVE</span></a>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Our Work</a></li>
+    <li><a href="https://instagram.com/paperplanecreative" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://youtube.com/@PaperPlaneCreativeZA" target="_blank" rel="noopener">YouTube</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Paper Plane Creative</span>
+</footer>
+
+<script>
+/* =============================================
+   DATA & CONFIG
+============================================= */
+const bgMap = {
+  'zigzag-50-year-interviews':    'bg-zigzag',
+  'hamediehs-ark-of-hope':        'bg-hamediehs',
+  'khanyisa-hope':                'bg-khanyisa',
+  'saint-summer-campaign':        'bg-saint',
+  'kingsley-heath-confidence':    'bg-kingsley'
+};
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal, .reveal-left').forEach(el => revealObs.observe(el));
+
+/* =============================================
+   LOAD PROJECTS
+============================================= */
+let allProjects = [];
+let activeFilter = 'all';
+
+async function loadProjects() {
+  try {
+    // Try fetch first (works on a server / Vercel)
+    const res = await fetch('projects.json');
+    if (!res.ok) throw new Error('fetch failed');
+    allProjects = await res.json();
+  } catch (_) {
+    // Fallback data for local file:// preview
+    allProjects = [
+      {
+        id: 'zigzag-50-year-interviews',
+        client: 'ZIGZAG',
+        title: '50 Year Interviews',
+        type: 'Documentary',
+        date: '2025',
+        description: 'A documentary series produced for ZIGZAG, capturing 50 years of stories from the people who shaped South African surf culture.',
+        thumbnail: 'assets/images/thumbnail-zigzag.jpg',
+        hero: 'assets/images/hero-zigzag.jpg',
+        tags: ['video', 'documentary']
+      },
+      {
+        id: 'hamediehs-ark-of-hope',
+        client: 'Hamediehs',
+        title: 'Ark of Hope',
+        type: 'Documentary',
+        date: 'August 2025',
+        description: 'A short documentary exploring how a 130-year-old Cape Flats rugby club transforms young lives through brotherhood, discipline, and hope.',
+        thumbnail: 'assets/images/thumbnail-hamediehs.jpg',
+        hero: 'assets/images/hero-hamediehs.jpg',
+        video: 'assets/videos/hamediehs.mp4',
+        tags: ['video', 'documentary']
+      },
+      {
+        id: 'khanyisa-hope',
+        client: 'Khanyisa Developmental Centre',
+        title: 'Hope',
+        type: 'Documentary',
+        date: 'June 2025',
+        description: 'A hero film for Khanyisa — an organisation that gives families with children of differing ability a place to belong. We spent time with the incredible people who make it what it is, and let their stories do the talking.',
+        thumbnail: 'assets/images/thumbnail-khanyisa.jpg',
+        hero: 'assets/images/hero-khanyisa.jpg',
+        video: 'assets/videos/khanyisa.mp4',
+        tags: ['documentary', 'corporate']
+      },
+      {
+        id: 'saint-summer-campaign',
+        client: 'Saint & Summer',
+        title: 'Try Something New Today Campaign',
+        type: 'Campaign',
+        date: 'June 2024',
+        description: 'A social campaign for Saint & Summer built around one simple idea: "Try Something New Today." From ideation and content strategy through to custom-produced music, Paper Plane was at the forefront of it all.',
+        thumbnail: 'assets/images/thumbnail-saint.jpg',
+        hero: 'assets/images/hero-saint.jpg',
+        video: 'assets/videos/saint.mp4',
+        tags: ['video', 'brand', 'campaign']
+      },
+      {
+        id: 'kingsley-heath-confidence',
+        client: 'Kingsley Heath',
+        title: 'Confidence Campaign Shoot',
+        type: 'Photography',
+        date: 'March 2026',
+        description: 'A showcase of stills from the Confidence shoot for Kingsley Heath — speaking to the inner confidence the brand carries and the people who embody it.',
+        thumbnail: 'assets/images/thumbnail-kingsley.jpg',
+        hero: 'assets/images/hero-kingsley.jpg',
+        gallery: ['assets/images/kingsley-01.jpg','assets/images/kingsley-02.jpg','assets/images/kingsley-03.jpg','assets/images/kingsley-04.jpg','assets/images/kingsley-05.jpg','assets/images/kingsley-06.jpg','assets/images/kingsley-07.jpg','assets/images/kingsley-08.jpg','assets/images/kingsley-09.jpg','assets/images/kingsley-10.jpg','assets/images/kingsley-11.jpg','assets/images/kingsley-12.jpg','assets/images/kingsley-13.jpg','assets/images/kingsley-14.jpg'],
+        tags: ['photography', 'campaign', 'brand']
+      }
+    ];
+  }
+  renderGrid(allProjects);
+  setupLightbox();
+  setupFilters();
+}
+
+/* =============================================
+   RENDER GRID
+============================================= */
+function renderGrid(projects) {
+  const grid = document.getElementById('work-grid');
+  const empty = document.getElementById('work-empty');
+  const count = document.getElementById('project-count');
+
+  // Remove all cards (keep empty state div)
+  grid.querySelectorAll('.work-card').forEach(c => c.remove());
+
+  count.textContent = projects.length;
+
+  if (projects.length === 0) {
+    empty.classList.add('visible');
+    return;
+  }
+  empty.classList.remove('visible');
+
+  projects.forEach((p, i) => {
+    const isFeatured = i === 0 && activeFilter === 'all';
+    const bg = bgMap[p.id] || 'bg-default';
+
+    const card = document.createElement('article');
+    card.className = 'work-card' + (isFeatured ? ' featured' : '');
+    card.dataset.id = p.id;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `View ${p.title} by ${p.client}`);
+
+    card.innerHTML = `
+      <div class="card-bg ${bg}"></div>
+      <span class="card-date">${p.date}</span>
+      <div class="card-content">
+        <span class="card-type">${p.type}</span>
+        <span class="card-client">${p.client}</span>
+        <h3 class="card-title">${p.title}</h3>
+        <span class="card-cta">View Project →</span>
+      </div>
+    `;
+
+    // If a real thumbnail image path is set, show it
+    if (p.thumbnail) {
+      const img = document.createElement('img');
+      img.className = 'card-img';
+      img.src = p.thumbnail;
+      img.alt = p.title;
+      img.loading = 'lazy';
+      img.style.display = 'block';
+      card.insertBefore(img, card.querySelector('.card-content'));
+    }
+
+    grid.insertBefore(card, empty);
+  });
+
+  // Re-observe newly created reveal elements (none here, cards don't use reveal class)
+  // Staggered entrance animation via CSS
+  grid.querySelectorAll('.work-card').forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out)';
+    card.style.transitionDelay = `${i * 0.07}s`;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      });
+    });
+  });
+}
+
+/* =============================================
+   FILTERS
+============================================= */
+function setupFilters() {
+  const btns = document.querySelectorAll('.filter-btn');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      if (filter === activeFilter) return;
+
+      activeFilter = filter;
+
+      btns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const grid = document.getElementById('work-grid');
+      grid.classList.add('filtering');
+
+      setTimeout(() => {
+        const filtered = filter === 'all'
+          ? allProjects
+          : allProjects.filter(p => p.tags && p.tags.includes(filter));
+        renderGrid(filtered);
+        grid.classList.remove('filtering');
+      }, 220);
+    });
+  });
+}
+
+/* =============================================
+   LIGHTBOX
+============================================= */
+function setupLightbox() {
+  const overlay = document.getElementById('lightbox');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  function openLightbox(id) {
+    const p = allProjects.find(x => x.id === id);
+    if (!p) return;
+
+    // Populate
+    document.getElementById('lb-client').textContent = p.client;
+    document.getElementById('lb-type').textContent = p.type;
+    document.getElementById('lb-title').textContent = p.title;
+    document.getElementById('lb-meta').textContent = p.date;
+    document.getElementById('lb-desc').textContent = p.description;
+
+    // Tags
+    const tagsEl = document.getElementById('lb-tags');
+    tagsEl.innerHTML = '';
+    if (p.tags) {
+      p.tags.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'lightbox-tag';
+        span.textContent = tag;
+        tagsEl.appendChild(span);
+      });
+    }
+
+    // Background / thumbnail
+    const bg = document.getElementById('lightbox-bg');
+    bg.className = 'lightbox-media-bg ' + (bgMap[p.id] || 'bg-default');
+    bg.innerHTML = '';
+    if (p.hero) {
+      const img = document.createElement('img');
+      img.src = p.hero;
+      img.alt = p.title;
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;opacity:1;';
+      bg.appendChild(img);
+    }
+
+    // Video
+    const mediaEl = document.getElementById('lightbox-media');
+    const videoEl = document.getElementById('lightbox-video');
+    const playBtn = document.getElementById('lightbox-play-btn');
+    mediaEl.classList.remove('playing');
+    try { videoEl.pause(); } catch(e) {}
+    videoEl.removeAttribute('src');
+    videoEl.load();
+
+    // Gallery
+    const galleryOpenBtn = document.getElementById('lightbox-gallery-open-btn');
+    const galleryEl = document.getElementById('lightbox-gallery');
+    const galleryImg = document.getElementById('lightbox-gallery-img');
+    const galleryCounter = document.getElementById('gallery-counter');
+    let galleryIndex = 0;
+
+    mediaEl.classList.remove('gallery-mode');
+
+    if (p.gallery && p.gallery.length) {
+      playBtn.style.display = 'none';
+      galleryOpenBtn.style.display = '';
+      galleryOpenBtn.onclick = (e) => {
+        e.stopPropagation();
+        galleryIndex = 0;
+        galleryImg.src = p.gallery[0];
+        galleryCounter.textContent = `1 / ${p.gallery.length}`;
+        mediaEl.classList.add('gallery-mode');
+      };
+      document.getElementById('gallery-prev').onclick = (e) => {
+        e.stopPropagation();
+        galleryIndex = (galleryIndex - 1 + p.gallery.length) % p.gallery.length;
+        galleryImg.src = p.gallery[galleryIndex];
+        galleryCounter.textContent = `${galleryIndex + 1} / ${p.gallery.length}`;
+      };
+      document.getElementById('gallery-next').onclick = (e) => {
+        e.stopPropagation();
+        galleryIndex = (galleryIndex + 1) % p.gallery.length;
+        galleryImg.src = p.gallery[galleryIndex];
+        galleryCounter.textContent = `${galleryIndex + 1} / ${p.gallery.length}`;
+      };
+    } else {
+      galleryOpenBtn.style.display = 'none';
+    }
+
+    if (p.video) {
+      playBtn.style.display = p.gallery ? 'none' : '';
+      playBtn.onclick = (e) => {
+        e.stopPropagation();
+        videoEl.src = p.video;
+        mediaEl.classList.add('playing');
+        videoEl.play();
+      };
+    } else if (!p.gallery) {
+      playBtn.style.display = 'none';
+      playBtn.onclick = null;
+    }
+    mediaEl.onclick = null;
+
+    overlay.classList.add('open');
+    document.body.classList.add('no-scroll');
+
+    // Focus management
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+    const videoEl = document.getElementById('lightbox-video');
+    const mediaEl = document.getElementById('lightbox-media');
+    try { videoEl.pause(); } catch(e) {}
+    videoEl.removeAttribute('src');
+    mediaEl.classList.remove('playing');
+    mediaEl.classList.remove('gallery-mode');
+  }
+
+  // Clicks on grid — event delegation
+  document.getElementById('work-grid').addEventListener('click', e => {
+    const card = e.target.closest('.work-card');
+    if (card) openLightbox(card.dataset.id);
+  });
+
+  // Keyboard on grid cards
+  document.getElementById('work-grid').addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.work-card');
+      if (card) { e.preventDefault(); openLightbox(card.dataset.id); }
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+}
+
+/* =============================================
+   PAGE TRANSITIONS
+============================================= */
+const overlay = document.getElementById('page-transition');
+
+window.addEventListener('DOMContentLoaded', () => {
+  overlay.classList.add('entering');
+  setTimeout(() => overlay.classList.remove('entering'), 600);
+});
+
+document.querySelectorAll('a[href]').forEach(link => {
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = link.href;
+    overlay.classList.add('leaving');
+    setTimeout(() => { window.location.href = target; }, 560);
+  });
+});
+
+/* =============================================
+   BOOT
+============================================= */
+loadProjects();
+
+/* =============================================
+   HERO SLIDESHOW
+============================================= */
+(function() {
+  const slides = document.querySelectorAll('#hero-slideshow .hero-img');
+  if (slides.length < 2) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 7000);
+})();
+</script>
+</body>
+</html>
