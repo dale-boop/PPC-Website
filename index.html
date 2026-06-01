@@ -807,6 +807,24 @@ footer {
   z-index: 1;
 }
 .lightbox-close:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+.lightbox-media { position: relative; }
+.lightbox-media-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lightbox-media-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lightbox-play-btn {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5; cursor: pointer;
+}
+.lightbox-play-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
+}
+.lightbox-play-icon svg { width: 22px; height: 22px; fill: white; margin-left: 0.2rem; }
+.lightbox-media:hover .lightbox-play-icon { background: rgba(81,166,167,0.4); transform: scale(1.08); }
+.lightbox-media.portrait-mode { aspect-ratio: 9/16; max-height: 80vh; width: auto; margin: 0 auto; }
 </style>
 </head>
 <body>
@@ -818,7 +836,14 @@ footer {
 <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Project details">
   <div class="lightbox-box">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
-    <div class="lightbox-media"><div class="lightbox-media-bg" id="lightbox-bg"></div></div>
+    <div class="lightbox-media" id="lightbox-media">
+      <div class="lightbox-media-bg" id="lightbox-bg"></div>
+      <div class="lightbox-play-btn" id="lightbox-play-btn" style="display:none">
+        <div class="lightbox-play-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+    </div>
     <div class="lightbox-body">
       <p class="lightbox-client" id="lb-client"></p>
       <h2 class="lightbox-title" id="lb-title"></h2>
@@ -1184,7 +1209,42 @@ function setupLightbox(projects) {
     document.getElementById('lb-title').textContent = p.title;
     document.getElementById('lb-meta').textContent = p.type + ' · ' + p.date;
     document.getElementById('lb-desc').textContent = p.description;
-    document.getElementById('lightbox-bg').className = 'lightbox-media-bg ' + (bgMap[p.id] || '');
+
+    const mediaEl = document.getElementById('lightbox-media');
+    const bg = document.getElementById('lightbox-bg');
+    const playBtn = document.getElementById('lightbox-play-btn');
+
+    mediaEl.classList.remove('portrait-mode');
+    bg.innerHTML = '';
+    bg.className = 'lightbox-media-bg';
+
+    // Hero image
+    if (p.hero) {
+      const img = document.createElement('img');
+      img.src = p.hero;
+      img.alt = p.title;
+      bg.appendChild(img);
+    }
+
+    // YouTube play button
+    if (p.youtube) {
+      if (p.portrait) mediaEl.classList.add('portrait-mode');
+      playBtn.style.display = '';
+      playBtn.onclick = (e) => {
+        e.stopPropagation();
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${p.youtube}?autoplay=1&rel=0`;
+        iframe.allow = 'autoplay; encrypted-media; fullscreen';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';
+        mediaEl.appendChild(iframe);
+        playBtn.style.display = 'none';
+        bg.style.display = 'none';
+      };
+    } else {
+      playBtn.style.display = 'none';
+    }
+
     overlay.classList.add('open');
     document.body.classList.add('no-scroll');
   }
@@ -1192,6 +1252,12 @@ function setupLightbox(projects) {
   function closeLightbox() {
     overlay.classList.remove('open');
     document.body.classList.remove('no-scroll');
+    const mediaEl = document.getElementById('lightbox-media');
+    const iframe = mediaEl.querySelector('iframe');
+    if (iframe) iframe.remove();
+    const bg = document.getElementById('lightbox-bg');
+    bg.style.display = '';
+    mediaEl.classList.remove('portrait-mode');
   }
 
   document.getElementById('work-grid').addEventListener('click', e => {
