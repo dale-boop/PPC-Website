@@ -626,11 +626,15 @@ img { display: block; max-width: 100%; }
 .lightbox-media.gallery-mode .lightbox-gallery { display: block; }
 .lightbox-media.gallery-mode .lightbox-play-btn { display: none; }
 .lightbox-media.gallery-mode .lightbox-gallery-open-btn { display: none; }
-.lightbox-media.gallery-mode { aspect-ratio: 4/5; }
+.lightbox-media.gallery-mode {
+  aspect-ratio: unset;
+  height: min(75vh, 700px);
+}
 .lightbox-gallery-img {
   width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  background: #000;
 }
 .lightbox-gallery-prev,
 .lightbox-gallery-next {
