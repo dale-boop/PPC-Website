@@ -87,5 +87,18 @@
       "Campaign",
       "Brand"
     ]
+  },
+  {
+    "id": "andrew-sutton-seeing-sound",
+    "client": "Andrew Sutton",
+    "title": "Seeing Sound.",
+    "type": "Music Video",
+    "date": "August 2025",
+    "description": "Seeing Sound is a new original series by Paper Plane Creative that dives into the heart of music creation. Each episode features intimate conversations with artists and their producers as they unpack the journey behind a single track - followed by a stripped-back acoustic performance that brings the story to life. This is where visual meets sound, and storytelling takes centre stage. This first episode's guest interviews Andrew Sutton and his producer Dale James Young over their song 'Rosie'.",
+    "thumbnail": "assets/images/thumbnail-sound",
+    "hero": "assets/images/hero-sound",
+    "tags": [
+      "music"
+    ]
   }
 ]
