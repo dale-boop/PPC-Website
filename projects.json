@@ -100,5 +100,20 @@
     "tags": [
       "music"
     ]
+  },
+  {
+    "id": "gateway-unity-performing-arts-father-s-day-campaign",
+    "client": "Gateway/Unity Performing Arts",
+    "title": "Father's Day Campaign",
+    "type": "Photography",
+    "date": "June 2024",
+    "description": "This was in-studio shoot that we did in collaboration with Gateway and Unity Performing Arts ahead of their Father's Day feature. The incredible Styles Mbatha modelled looks from Kingsley Heath, Mango and Cape Union Mart in an editorial style shoot.",
+    "thumbnail": "assets/images/thumbnail-styles.jpg",
+    "hero": "assets/images/hero-styles.jpg",
+    "tags": [
+      "photography",
+      "corporate",
+      "brand"
+    ]
   }
 ]
