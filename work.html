@@ -1439,7 +1439,21 @@ function setupLightbox() {
       galleryOpenBtn.style.display = 'none';
     }
 
-    if (p.video) {
+    if (p.youtube) {
+      playBtn.style.display = p.gallery ? 'none' : '';
+      playBtn.onclick = (e) => {
+        e.stopPropagation();
+        // Replace media area with YouTube iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${p.youtube}?autoplay=1&rel=0`;
+        iframe.allow = 'autoplay; encrypted-media; fullscreen';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';
+        mediaEl.appendChild(iframe);
+        playBtn.style.display = 'none';
+        document.getElementById('lightbox-bg').style.display = 'none';
+      };
+    } else if (p.video) {
       playBtn.style.display = p.gallery ? 'none' : '';
       playBtn.onclick = (e) => {
         e.stopPropagation();
@@ -1469,6 +1483,10 @@ function setupLightbox() {
     videoEl.removeAttribute('src');
     mediaEl.classList.remove('playing');
     mediaEl.classList.remove('gallery-mode');
+    // Remove any YouTube iframe
+    const iframe = mediaEl.querySelector('iframe');
+    if (iframe) iframe.remove();
+    document.getElementById('lightbox-bg').style.display = '';
   }
 
   // Clicks on grid — event delegation
