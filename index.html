@@ -889,6 +889,8 @@ footer {
    RESPONSIVE
 ============================================= */
 @media (max-width: 900px) {
+  html, body { overflow-x: hidden; }
+
   #nav { padding: 0 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
@@ -903,6 +905,7 @@ footer {
   .about-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
   .services { padding: 4rem 1.5rem; }
+  .section-header { padding: 0 1.5rem; }
   .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 
   .work { padding: 4rem 1.5rem; }
@@ -914,7 +917,9 @@ footer {
   .partners { padding: 3rem 1.5rem; }
   .partners-row { gap: 1.5rem 2.5rem; }
 
-  .contact-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+  .contact { padding: 4rem 1.5rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row { grid-template-columns: 1fr; }
 
   footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; gap: 1.2rem; }
   .footer-links { flex-wrap: wrap; gap: 1.2rem; }

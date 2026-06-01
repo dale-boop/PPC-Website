@@ -568,6 +568,8 @@ footer {
    RESPONSIVE
 ============================================= */
 @media (max-width: 900px) {
+  html, body { overflow-x: hidden; }
+
   #nav { padding: 0 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
@@ -578,10 +580,15 @@ footer {
 
   .studio { padding: 4rem 1.5rem; }
   .studio-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .details-grid { grid-template-columns: 1fr; }
 
   .approach { padding: 4rem 1.5rem; }
   .approach-inner { grid-template-columns: 1fr; gap: 2rem; }
   .approach-steps { gap: 2rem; }
+
+  .values { padding: 4rem 1.5rem; }
+  .values-grid { grid-template-columns: 1fr; }
+  .value-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
 
   .team { padding: 4rem 1.5rem; }
   .team-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -593,7 +600,6 @@ footer {
 @media (max-width: 600px) {
   .hero-headline { font-size: clamp(2.4rem, 12vw, 3.4rem); }
   .section-title { font-size: 2rem; }
-  .details-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>

@@ -1007,12 +1007,15 @@ footer {
   .work-card.featured { grid-column: span 2; }
 }
 @media (max-width: 900px) {
+  html, body { overflow-x: hidden; }
+
   #nav { padding: 0 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
 
   .hero { padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem; }
   .hero-headline { font-size: clamp(2.8rem, 10vw, 4.5rem); }
+  .hero-eyebrow { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .work-section { padding: 4rem 1.5rem 5rem; }
   .cta-section { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
   footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; gap: 1.2rem; }
