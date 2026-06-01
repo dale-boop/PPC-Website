@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PPC Admin — Projects</title>
+<title>PPC Admin  -  Projects</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -197,7 +197,7 @@
     <span class="admin-nav-logo">PPC Admin &nbsp;·&nbsp; Projects</span>
     <div class="admin-nav-right">
       <span id="sync-status">Ready</span>
-      <!-- Push to GitHub disabled — use GitHub Desktop to push -->
+      <!-- Push to GitHub disabled  -  use GitHub Desktop to push -->
       <!-- <button class="btn btn-outline btn-sm" id="save-btn">⬆ Push to GitHub</button> -->
       <a href="index.html" class="btn btn-ghost btn-sm">← Back to site</a>
     </div>
@@ -207,7 +207,7 @@
     <div class="admin-header">
       <div>
         <h1>Projects</h1>
-        <p>Changes are saved locally until you push to GitHub — which triggers an automatic Vercel deploy.</p>
+        <p>Changes are saved locally until you push to GitHub  -  which triggers an automatic Vercel deploy.</p>
       </div>
       <button class="btn btn-amber" id="add-btn">+ Add Project</button>
     </div>
@@ -243,7 +243,7 @@
         </div>
         <div class="form-group full">
           <label for="f-desc">Description</label>
-          <textarea id="f-desc" placeholder="Short description of the project — shown in the lightbox on the work page."></textarea>
+          <textarea id="f-desc" placeholder="Short description of the project  -  shown in the lightbox on the work page."></textarea>
         </div>
         <div class="form-group">
           <label for="f-thumb">Thumbnail Image Path</label>
@@ -286,7 +286,7 @@
           <input type="password" id="gh-pat" placeholder="ghp_...">
         </div>
       </div>
-      <p class="config-note">Settings are saved in your browser only — never sent anywhere except directly to GitHub. The token needs <strong>repo</strong> scope. Once pushed, Vercel auto-deploys within ~30 seconds.</p>
+      <p class="config-note">Settings are saved in your browser only  -  never sent anywhere except directly to GitHub. The token needs <strong>repo</strong> scope. Once pushed, Vercel auto-deploys within ~30 seconds.</p>
       <button class="btn btn-outline btn-sm" id="save-config-btn" style="margin-top:0.8rem">Save Settings</button>
     </div>
   </div>
@@ -294,7 +294,7 @@
 
 <script>
 /* =============================================
-   PASSWORD — change ADMIN_PASSWORD to your own
+   PASSWORD  -  change ADMIN_PASSWORD to your own
 ============================================= */
 const ADMIN_PASSWORD = 'iwhap';
 
@@ -337,16 +337,16 @@ async function loadProjects() {
     if (!res.ok) throw new Error();
     projects = await res.json();
   } catch {
-    // Fallback for file:// or fetch errors — mirrors projects.json
+    // Fallback for file:// or fetch errors  -  mirrors projects.json
     projects = [
       {"id":"zigzag-50-year-interviews","client":"ZIGZAG","title":"50 Year Interviews","type":"Documentary","date":"2025","description":"A documentary series produced for ZIGZAG, capturing 50 years of stories from the people who shaped South African surf culture.","thumbnail":"assets/images/thumbnail-zigzag.jpg","hero":"assets/images/hero-zigzag.jpg","tags":["video","documentary"]},
       {"id":"hamediehs-ark-of-hope","client":"Hamediehs","title":"Ark of Hope","type":"Documentary","date":"August 2025","description":"A short documentary exploring how a 130-year-old Cape Flats rugby club transforms young lives through brotherhood, discipline, and hope.","thumbnail":"assets/images/thumbnail-hamediehs.jpg","hero":"assets/images/hero-hamediehs.jpg","video":"assets/videos/hamediehs.mp4","tags":["video","documentary"]},
       {"id":"pam-golding-property-showcase","client":"Pam Golding","title":"Property Showcase","type":"Corporate","date":"March 2026","description":"Part of a series of videos Paper Plane Creative provides for long-standing client, Pam Golding. A collaboration with the amazing Carol Reynolds as she guides viewers through some incredible properties within the Umhlanga/Umdloti area.","thumbnail":"assets/images/thumbnail-pam.jpg","hero":"assets/images/hero-pam.jpg","tags":["corporate","video"]},
-      {"id":"khanyisa-hope","client":"Khanyisa Developmental Centre","title":"Hope","type":"Documentary","date":"June 2025","description":"A hero film for Khanyisa — an organisation that gives families with children of differing ability a place to belong. We spent time with the incredible people who make it what it is, and let their stories do the talking.","thumbnail":"assets/images/thumbnail-khanyisa.jpg","hero":"assets/images/hero-khanyisa.jpg","video":"assets/videos/khanyisa.mp4","tags":["documentary","corporate"]},
+      {"id":"khanyisa-hope","client":"Khanyisa Developmental Centre","title":"Hope","type":"Documentary","date":"June 2025","description":"A hero film for Khanyisa  -  an organisation that gives families with children of differing ability a place to belong. We spent time with the incredible people who make it what it is, and let their stories do the talking.","thumbnail":"assets/images/thumbnail-khanyisa.jpg","hero":"assets/images/hero-khanyisa.jpg","video":"assets/videos/khanyisa.mp4","tags":["documentary","corporate"]},
       {"id":"saint-summer-campaign","client":"Saint & Summer","title":"Try Something New Today Campaign","type":"Campaign","date":"June 2024","description":"A social campaign for Saint & Summer built around one simple idea: \"Try Something New Today.\" An expression of a creative soul finding genuine happiness through making things.","thumbnail":"assets/images/thumbnail-saint.jpg","hero":"assets/images/hero-saint.jpg","video":"assets/videos/saint.mp4","tags":["video","brand","campaign"]},
-      {"id":"kingsley-heath-confidence","client":"Kingsley Heath","title":"Confidence Campaign","type":"Photography","date":"March 2026","description":"A showcase of stills from the Confidence shoot for Kingsley Heath — speaking to the inner confidence the brand carries and the people who embody it.","thumbnail":"assets/images/thumbnail-kingsley.jpg","hero":"assets/images/hero-kingsley.jpg","gallery":["assets/images/kingsley-01.jpg","assets/images/kingsley-02.jpg","assets/images/kingsley-03.jpg","assets/images/kingsley-04.jpg","assets/images/kingsley-05.jpg","assets/images/kingsley-06.jpg","assets/images/kingsley-07.jpg","assets/images/kingsley-08.jpg","assets/images/kingsley-09.jpg","assets/images/kingsley-10.jpg","assets/images/kingsley-11.jpg","assets/images/kingsley-12.jpg","assets/images/kingsley-13.jpg","assets/images/kingsley-14.jpg"],"tags":["photography","campaign","brand"]},
+      {"id":"kingsley-heath-confidence","client":"Kingsley Heath","title":"Confidence Campaign","type":"Photography","date":"March 2026","description":"A showcase of stills from the Confidence shoot for Kingsley Heath  -  speaking to the inner confidence the brand carries and the people who embody it.","thumbnail":"assets/images/thumbnail-kingsley.jpg","hero":"assets/images/hero-kingsley.jpg","gallery":["assets/images/kingsley-01.jpg","assets/images/kingsley-02.jpg","assets/images/kingsley-03.jpg","assets/images/kingsley-04.jpg","assets/images/kingsley-05.jpg","assets/images/kingsley-06.jpg","assets/images/kingsley-07.jpg","assets/images/kingsley-08.jpg","assets/images/kingsley-09.jpg","assets/images/kingsley-10.jpg","assets/images/kingsley-11.jpg","assets/images/kingsley-12.jpg","assets/images/kingsley-13.jpg","assets/images/kingsley-14.jpg"],"tags":["photography","campaign","brand"]},
       {"id":"coca-cola-all-hands-campaign","client":"Coca-Cola","title":"All-Hands Campaign","type":"Campaign","date":"September 2025","description":"Some work we did for Coca-Cola ahead of their All-Hands Conference that was hosted in Cape Town during November 2025. Whilst we are unable to share any work from the final asset, here are some shots not included in the edit.","thumbnail":"assets/images/thumbnail-coke.jpg","hero":"assets/images/hero-coke.jpg","tags":["campaign","brand"]},
-      {"id":"andrew-sutton-seeing-sound","client":"Andrew Sutton","title":"Seeing Sound.","type":"Music Video","date":"August 2025","description":"Seeing Sound is a new original series by Paper Plane Creative that dives into the heart of music creation. Each episode features intimate conversations with artists and their producers as they unpack the journey behind a single track — followed by a stripped-back acoustic performance that brings the story to life.","thumbnail":"assets/images/thumbnail-sound.jpg","hero":"assets/images/hero-sound.jpg","tags":["music"]},
+      {"id":"andrew-sutton-seeing-sound","client":"Andrew Sutton","title":"Seeing Sound.","type":"Music Video","date":"August 2025","description":"Seeing Sound is a new original series by Paper Plane Creative that dives into the heart of music creation. Each episode features intimate conversations with artists and their producers as they unpack the journey behind a single track  -  followed by a stripped-back acoustic performance that brings the story to life.","thumbnail":"assets/images/thumbnail-sound.jpg","hero":"assets/images/hero-sound.jpg","tags":["music"]},
       {"id":"gateway-unity-performing-arts-father-s-day-campaign","client":"Gateway/Unity Performing Arts","title":"Father's Day Campaign","type":"Photography","date":"June 2024","description":"This was an in-studio shoot that we did in collaboration with Gateway and Unity Performing Arts ahead of their Father's Day feature. The incredible Styles Mbatha modelled looks from Kingsley Heath, Mango and Cape Union Mart in an editorial style shoot.","thumbnail":"assets/images/thumbnail-styles.jpg","hero":"assets/images/hero-styles.jpg","gallery":["assets/images/styles-1.jpg","assets/images/styles-2.jpg","assets/images/styles-3.jpg","assets/images/styles-4.jpg"],"tags":["photography","corporate","brand"]}
     ];
   }
@@ -382,7 +382,7 @@ function renderList() {
 }
 
 /* =============================================
-   FORM — ADD
+   FORM  -  ADD
 ============================================= */
 document.getElementById('add-btn').addEventListener('click', () => {
   editingId = null;
@@ -393,7 +393,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
 });
 
 /* =============================================
-   FORM — EDIT
+   FORM  -  EDIT
 ============================================= */
 function openEditForm(id) {
   const p = projects.find(x => x.id === id);
@@ -536,7 +536,7 @@ async function pushToGitHub() {
     // 2. Encode content
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(projects, null, 2))));
     const body = {
-      message: `Update projects.json — ${new Date().toLocaleString('en-ZA')}`,
+      message: `Update projects.json  -  ${new Date().toLocaleString('en-ZA')}`,
       content,
       ...(sha ? { sha } : {})
     };
@@ -549,7 +549,7 @@ async function pushToGitHub() {
     });
 
     if (putRes.ok) {
-      status.textContent = 'Pushed ✓ — deploying…';
+      status.textContent = 'Pushed ✓  -  deploying…';
       status.className = 'success';
       showToast('Pushed to GitHub. Vercel is deploying (30s).', 'success');
       setTimeout(() => { status.textContent = 'Up to date'; status.className = ''; }, 8000);
