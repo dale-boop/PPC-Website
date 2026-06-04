@@ -766,6 +766,21 @@ footer {
   background: linear-gradient(145deg, #0a1818, #0e2020);
 }
 .lightbox-body { padding: 2.5rem; }
+.lightbox-cta {
+  display: inline-block;
+  margin-top: 2rem;
+  background: var(--highlight);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.lightbox-cta:hover { opacity: 0.85; transform: translateY(-2px); }
 .lightbox-client {
   font-size: 0.67rem;
   letter-spacing: 0.28em;
@@ -960,6 +975,7 @@ footer {
       <h2 class="lightbox-title" id="lb-title"></h2>
       <p class="lightbox-meta" id="lb-meta"></p>
       <p class="lightbox-desc" id="lb-desc"></p>
+      <a href="#contact" class="lightbox-cta">Let's Talk</a>
     </div>
   </div>
 </div>
