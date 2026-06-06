@@ -13,7 +13,7 @@
    RESET & BASE
 ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background: #0f0f0f;
   color: #eae6df;
@@ -1042,12 +1042,25 @@ footer {
   .lightbox-box { width: 100%; max-width: 100%; max-height: 100vh; border-radius: 0; }
   .lightbox-overlay { align-items: flex-end; }
   .lightbox-body { padding: 1.5rem; }
+  /* Bigger touch targets for gallery nav */
+  .lightbox-gallery-prev,
+  .lightbox-gallery-next { width: 3rem; height: 3rem; }
+  /* Gallery height: don't eat the whole screen on mobile */
+  .lightbox-media.gallery-mode { height: min(55vh, 420px); }
+  /* Portrait (Shorts) on mobile */
+  .lightbox-media.portrait-mode { max-height: 65vh; }
+  /* Lightbox title fits on small screens */
+  .lightbox-title { font-size: 1.8rem; }
+  .lightbox-close { top: 0.75rem; right: 0.75rem; width: 2.4rem; height: 2.4rem; font-size: 1rem; }
 }
 @media (max-width: 600px) {
   .work-grid { grid-template-columns: 1fr; }
   .work-card.featured { grid-column: span 1; aspect-ratio: 16/10; }
   .hero-headline { font-size: clamp(2.4rem, 12vw, 3.4rem); }
   .filter-btn { padding: 0.7rem 0.8rem; font-size: 0.62rem; }
+  /* Tighten lightbox body further on very small screens */
+  .lightbox-body { padding: 1.2rem; }
+  .lightbox-media.gallery-mode { height: min(50vh, 340px); }
 }
 </style>
 </head>

@@ -13,7 +13,7 @@
    RESET & BASE
 ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background: #0f0f0f;
   color: #eae6df;
@@ -213,18 +213,6 @@ img { display: block; max-width: 100%; }
   padding: calc(var(--nav-h) + 3rem) 4rem 5.5rem;
   overflow: hidden;
   background: var(--dark);
-}
-.hero-deco {
-  position: absolute;
-  top: 0; right: -2rem;
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(16rem, 32vw, 30rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: rgba(255,255,255,0.025);
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
 }
 /* Teal glow top-right */
 .hero::before {
@@ -820,7 +808,6 @@ footer {
     -->
     <img class="hero-img" src="assets/images/hero-services.jpg" alt="" aria-hidden="true">
   </div>
-  <div class="hero-deco" aria-hidden="true">SVC</div>
   <div class="hero-content">
     <p class="eyebrow reveal">Brand Video · Photography · Audio Studio</p>
     <h1 class="hero-headline reveal reveal-delay-1">
