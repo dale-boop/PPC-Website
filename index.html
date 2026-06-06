@@ -599,12 +599,12 @@ img { display: block; max-width: 100%; }
 }
 
 /* =============================================
-   PARTNERS / BRAND STRIP  (dark)
+   PARTNERS / BRAND STRIP  (cream)
 ============================================= */
 .partners {
-  background: var(--dark);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: var(--cream);
+  border-top: 1px solid rgba(28,26,23,0.07);
+  border-bottom: 1px solid rgba(28,26,23,0.07);
   padding: 3.5rem 0;
   overflow: hidden;
 }
@@ -612,7 +612,7 @@ img { display: block; max-width: 100%; }
   font-size: 0.65rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: #b0ada6;
   text-align: center;
   margin-bottom: 2rem;
   padding: 0 1.5rem;
@@ -628,7 +628,7 @@ img { display: block; max-width: 100%; }
   font-size: clamp(1.3rem, 3vw, 1.8rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(234,230,223,0.75);
+  color: rgba(28,26,23,0.65);
   padding: 0 0.4rem;
   transition: color 0.3s;
 }
@@ -636,7 +636,7 @@ img { display: block; max-width: 100%; }
   color: var(--teal);
   padding: 0 1.8rem;
   font-size: 1rem;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 @keyframes brand-scroll {
   from { transform: translateX(0); }
@@ -766,7 +766,9 @@ footer {
   width: 90%;
   max-width: 820px;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   position: relative;
   transform: translateY(24px);
   transition: transform 0.45s var(--ease-out);
@@ -777,12 +779,13 @@ footer {
   background: var(--dark);
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .lightbox-media-bg {
   width: 100%; height: 100%;
   background: linear-gradient(145deg, #0a1818, #0e2020);
 }
-.lightbox-body { padding: 2.5rem; }
+.lightbox-body { padding: 2.5rem; overflow-y: auto; flex: 1 1 auto; min-height: 0; }
 .lightbox-cta {
   display: inline-block;
   margin-top: 2rem;
@@ -848,14 +851,16 @@ footer {
   z-index: 5; cursor: pointer;
 }
 .lightbox-play-icon {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: rgba(255,255,255,0.15);
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  border: 2px solid rgba(255,255,255,0.55);
   display: flex; align-items: center; justify-content: center;
   transition: background 0.2s, transform 0.2s;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
-.lightbox-play-icon svg { width: 22px; height: 22px; fill: white; margin-left: 0.2rem; }
-.lightbox-media:hover .lightbox-play-icon { background: rgba(81,166,167,0.4); transform: scale(1.08); }
+.lightbox-play-icon svg { width: 24px; height: 24px; fill: white; margin-left: 0.25rem; }
+.lightbox-media:hover .lightbox-play-icon { background: rgba(81,166,167,0.5); border-color: var(--teal); transform: scale(1.08); }
 .lightbox-media.portrait-mode { aspect-ratio: 9/16; max-height: 80vh; width: auto; margin: 0 auto; }
 
 /* Gallery */
@@ -1579,6 +1584,16 @@ function setupLightbox(projects) {
   closeBtn.addEventListener('click', closeLightbox);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Let's Talk — close lightbox first, then smooth-scroll to contact
+  document.querySelector('.lightbox-cta').addEventListener('click', e => {
+    e.preventDefault();
+    closeLightbox();
+    setTimeout(() => {
+      const contact = document.getElementById('contact');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+    }, 460);
+  });
 }
 
 /* =============================================
