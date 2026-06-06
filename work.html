@@ -218,13 +218,15 @@ img { display: block; max-width: 100%; }
   display: block;
 }
 .hero-img.active {
-  opacity: 0.85;
+  opacity: 0.6;
 }
 .hero-img-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.05) 40%, transparent 100%);
+  background:
+    linear-gradient(to bottom, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.1) 45%, transparent 70%),
+    linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.15) 40%, transparent 100%);
   z-index: 1;
 }
 .hero-content { position: relative; z-index: 1; }
@@ -252,6 +254,7 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   color: var(--offwhite);
   margin-bottom: 2.2rem;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
 .hero-headline .hl { color: var(--highlight); }
 .hero-bottom {
@@ -1694,6 +1697,13 @@ drawer.querySelectorAll('a').forEach(a => {
     drawer.classList.remove('open');
     document.body.classList.remove('no-scroll');
   });
+});
+drawer.addEventListener('click', (e) => {
+  if (e.target === drawer) {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
 });
 </script>
 </body>

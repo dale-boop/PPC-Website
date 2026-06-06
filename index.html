@@ -164,9 +164,10 @@ img { display: block; max-width: 100%; }
   padding: calc(var(--nav-h) + 3rem) 4rem 5.5rem;
   overflow: hidden;
   background-color: var(--dark);
-  /* Stacked: gradient on top → dark tint → hero image */
+  /* Stacked: gradients on top → hero image */
   background-image:
-    linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.05) 40%, transparent 100%),
+    linear-gradient(to bottom, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.1) 45%, transparent 70%),
+    linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.15) 40%, transparent 100%),
     url('assets/images/hero-home.jpg');
   background-size: cover;
   background-position: center;
@@ -243,6 +244,7 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   color: var(--offwhite);
   margin-bottom: 2.5rem;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
 .hero-headline .amber { color: var(--highlight); }
 .hero-bottom {
@@ -597,34 +599,49 @@ img { display: block; max-width: 100%; }
 }
 
 /* =============================================
-   PARTNERS  (dark)
+   PARTNERS / BRAND STRIP  (dark)
 ============================================= */
-.partners { background: var(--dark); }
+.partners {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 3.5rem 0;
+  overflow: hidden;
+}
 .partners-label {
-  font-size: 0.67rem;
+  font-size: 0.65rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--teal);
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
 }
-.partners-row {
-  display: flex;
-  justify-content: center;
+.brand-marquee { overflow: hidden; white-space: nowrap; }
+.brand-marquee-track {
+  display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 2.5rem 5rem;
+  animation: brand-scroll 38s linear infinite;
 }
-.partner {
+.brand-marquee-track span {
   font-family: 'Anton', sans-serif;
-  font-size: 0.88rem;
-  letter-spacing: 0.2em;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--charcoal);
+  color: rgba(234,230,223,0.75);
+  padding: 0 0.4rem;
   transition: color 0.3s;
-  cursor: default;
 }
-.partner:hover { color: var(--muted); }
+.brand-marquee-track .sep {
+  color: var(--teal);
+  padding: 0 1.8rem;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+@keyframes brand-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 /* =============================================
    CONTACT / CTA  (dark)
@@ -841,6 +858,90 @@ footer {
 .lightbox-media:hover .lightbox-play-icon { background: rgba(81,166,167,0.4); transform: scale(1.08); }
 .lightbox-media.portrait-mode { aspect-ratio: 9/16; max-height: 80vh; width: auto; margin: 0 auto; }
 
+/* Gallery */
+.lightbox-gallery {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #000;
+}
+.lightbox-media.gallery-mode .lightbox-gallery { display: block; }
+.lightbox-media.gallery-mode .lightbox-play-btn { display: none; }
+.lightbox-media.gallery-mode .lightbox-gallery-open-btn { display: none; }
+.lightbox-media.gallery-mode {
+  aspect-ratio: unset;
+  height: min(75vh, 700px);
+}
+.lightbox-gallery-img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+.lightbox-gallery-prev,
+.lightbox-gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.8rem; height: 2.8rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: none; color: white;
+  font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+  backdrop-filter: blur(4px);
+}
+.lightbox-gallery-prev:hover,
+.lightbox-gallery-next:hover { background: rgba(81,166,167,0.5); }
+.lightbox-gallery-prev { left: 1rem; }
+.lightbox-gallery-next { right: 1rem; }
+.lightbox-gallery-counter {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.65);
+  background: rgba(0,0,0,0.4);
+  padding: 0.3rem 0.8rem;
+  backdrop-filter: blur(4px);
+}
+.lightbox-gallery-open-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+.lightbox-gallery-open-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+.lightbox-gallery-open-icon {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.6rem;
+  border-radius: 2px;
+  pointer-events: all;
+  cursor: pointer;
+}
+.lightbox-media:hover .lightbox-gallery-open-icon { background: rgba(81,166,167,0.4); }
+
 /* =============================================
    HAMBURGER
 ============================================= */
@@ -932,7 +1033,7 @@ footer {
 
   .testimonial-text { font-size: 1.3rem; }
 
-  .partners-row { gap: 1.5rem 2.5rem; }
+  /* brand-marquee is self-contained, no override needed */
 
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
   .form-row { grid-template-columns: 1fr; }
@@ -946,6 +1047,9 @@ footer {
   .lightbox-title { font-size: 1.8rem; }
   .lightbox-close { top: 0.75rem; right: 0.75rem; width: 2.4rem; height: 2.4rem; font-size: 1rem; }
   .lightbox-media.portrait-mode { max-height: 65vh; }
+  .lightbox-gallery-prev,
+  .lightbox-gallery-next { width: 3rem; height: 3rem; }
+  .lightbox-media.gallery-mode { height: min(55vh, 420px); }
 }
 
 @media (max-width: 600px) {
@@ -953,8 +1057,8 @@ footer {
   .section-title { font-size: 2rem; }
   .stat { flex: 1 1 45%; padding: 1.2rem 0.8rem; }
   .stat-num { font-size: 2.4rem; }
-  .partners-row { gap: 1.2rem 2rem; justify-content: flex-start; }
   .lightbox-body { padding: 1.2rem; }
+  .lightbox-media.gallery-mode { height: min(50vh, 340px); }
 }
 </style>
 </head>
@@ -973,6 +1077,15 @@ footer {
         <div class="lightbox-play-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
         </div>
+      </div>
+      <div class="lightbox-gallery-open-btn" id="lightbox-gallery-open-btn" style="display:none">
+        <div class="lightbox-gallery-open-icon">View Gallery</div>
+      </div>
+      <div class="lightbox-gallery" id="lightbox-gallery">
+        <img class="lightbox-gallery-img" id="lightbox-gallery-img" src="" alt="">
+        <button class="lightbox-gallery-prev" id="gallery-prev" aria-label="Previous">&#8592;</button>
+        <button class="lightbox-gallery-next" id="gallery-next" aria-label="Next">&#8594;</button>
+        <div class="lightbox-gallery-counter" id="gallery-counter"></div>
       </div>
     </div>
     <div class="lightbox-body">
@@ -1150,18 +1263,30 @@ footer {
 </section>
 
 <!-- PARTNERS (dark) -->
-<section class="partners section-pad-sm">
-  <p class="partners-label reveal">Some Brands We've Partnered With</p>
-  <div class="partners-row reveal reveal-delay-1">
-    <span class="partner">Coca-Cola</span>
-    <span class="partner">Pam Golding</span>
-    <span class="partner">Gateway</span>
-    <span class="partner">Kingsley Heath</span>
-    <span class="partner">First Technology</span>
-    <span class="partner">Saint &amp; Summer</span>
-    <span class="partner">Khanyisa Developmental Centre</span>
-    <span class="partner">Araujo Attorneys</span>
-    <span class="partner">ZIGZAG</span>
+<section class="partners">
+  <p class="partners-label">Brands We've Partnered With</p>
+  <div class="brand-marquee" aria-hidden="true">
+    <div class="brand-marquee-track">
+      <span>Coca-Cola</span><span class="sep">·</span>
+      <span>Pam Golding</span><span class="sep">·</span>
+      <span>Gateway</span><span class="sep">·</span>
+      <span>Kingsley Heath</span><span class="sep">·</span>
+      <span>First Technology</span><span class="sep">·</span>
+      <span>Saint &amp; Summer</span><span class="sep">·</span>
+      <span>Khanyisa Developmental Centre</span><span class="sep">·</span>
+      <span>Araujo Attorneys</span><span class="sep">·</span>
+      <span>ZIGZAG</span><span class="sep">·</span>
+      <!-- duplicate for seamless loop -->
+      <span>Coca-Cola</span><span class="sep">·</span>
+      <span>Pam Golding</span><span class="sep">·</span>
+      <span>Gateway</span><span class="sep">·</span>
+      <span>Kingsley Heath</span><span class="sep">·</span>
+      <span>First Technology</span><span class="sep">·</span>
+      <span>Saint &amp; Summer</span><span class="sep">·</span>
+      <span>Khanyisa Developmental Centre</span><span class="sep">·</span>
+      <span>Araujo Attorneys</span><span class="sep">·</span>
+      <span>ZIGZAG</span><span class="sep">·</span>
+    </div>
   </div>
 </section>
 
@@ -1356,10 +1481,19 @@ function setupLightbox(projects) {
     const mediaEl = document.getElementById('lightbox-media');
     const bg = document.getElementById('lightbox-bg');
     const playBtn = document.getElementById('lightbox-play-btn');
+    const galleryOpenBtn = document.getElementById('lightbox-gallery-open-btn');
+    const galleryEl = document.getElementById('lightbox-gallery');
+    const galleryImg = document.getElementById('lightbox-gallery-img');
+    const galleryCounter = document.getElementById('gallery-counter');
+    let galleryIndex = 0;
 
+    mediaEl.classList.remove('gallery-mode');
     mediaEl.classList.remove('portrait-mode');
     bg.innerHTML = '';
     bg.className = 'lightbox-media-bg';
+    bg.style.display = '';
+
+    if (p.portrait) mediaEl.classList.add('portrait-mode');
 
     // Hero image
     if (p.hero) {
@@ -1369,10 +1503,36 @@ function setupLightbox(projects) {
       bg.appendChild(img);
     }
 
+    // Gallery
+    if (p.gallery && p.gallery.length) {
+      playBtn.style.display = 'none';
+      galleryOpenBtn.style.display = '';
+      galleryOpenBtn.onclick = (e) => {
+        e.stopPropagation();
+        galleryIndex = 0;
+        galleryImg.src = p.gallery[0];
+        galleryCounter.textContent = `1 / ${p.gallery.length}`;
+        mediaEl.classList.add('gallery-mode');
+      };
+      const showSlide = (idx) => {
+        galleryIndex = (idx + p.gallery.length) % p.gallery.length;
+        galleryImg.src = p.gallery[galleryIndex];
+        galleryCounter.textContent = `${galleryIndex + 1} / ${p.gallery.length}`;
+      };
+      document.getElementById('gallery-prev').onclick = (e) => { e.stopPropagation(); showSlide(galleryIndex - 1); };
+      document.getElementById('gallery-next').onclick = (e) => { e.stopPropagation(); showSlide(galleryIndex + 1); };
+      galleryEl.ontouchstart = (e) => { galleryEl._tx = e.touches[0].clientX; };
+      galleryEl.ontouchend = (e) => {
+        const diff = galleryEl._tx - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) showSlide(diff > 0 ? galleryIndex + 1 : galleryIndex - 1);
+      };
+    } else {
+      galleryOpenBtn.style.display = 'none';
+    }
+
     // YouTube play button
     if (p.youtube) {
-      if (p.portrait) mediaEl.classList.add('portrait-mode');
-      playBtn.style.display = '';
+      playBtn.style.display = p.gallery ? 'none' : '';
       playBtn.onclick = (e) => {
         e.stopPropagation();
         const iframe = document.createElement('iframe');
@@ -1384,7 +1544,7 @@ function setupLightbox(projects) {
         playBtn.style.display = 'none';
         bg.style.display = 'none';
       };
-    } else {
+    } else if (!p.gallery) {
       playBtn.style.display = 'none';
     }
 
@@ -1401,6 +1561,7 @@ function setupLightbox(projects) {
     const bg = document.getElementById('lightbox-bg');
     bg.style.display = '';
     mediaEl.classList.remove('portrait-mode');
+    mediaEl.classList.remove('gallery-mode');
   }
 
   document.getElementById('work-grid').addEventListener('click', e => {
@@ -1461,6 +1622,14 @@ drawer.querySelectorAll('a').forEach(a => {
     drawer.classList.remove('open');
     document.body.classList.remove('no-scroll');
   });
+});
+// Tap outside (on drawer backdrop) to close
+drawer.addEventListener('click', (e) => {
+  if (e.target === drawer) {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
 });
 </script>
 </body>

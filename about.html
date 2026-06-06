@@ -190,14 +190,16 @@ img { display: block; max-width: 100%; }
 .hero-img {
   width: 100%; height: 100%;
   object-fit: cover;
-  opacity: 0.85;
+  opacity: 0.6;
   display: block;
 }
 .hero-img-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.05) 40%, transparent 100%);
+  background:
+    linear-gradient(to bottom, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.1) 45%, transparent 70%),
+    linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.15) 40%, transparent 100%);
 }
 .hero-content { position: relative; z-index: 1; }
 .hero-eyebrow {
@@ -215,6 +217,7 @@ img { display: block; max-width: 100%; }
   line-height: 0.91; letter-spacing: -0.01em;
   text-transform: uppercase; color: #eae6df;
   margin-bottom: 2.8rem; max-width: 80vw;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
 .hero-headline .amber { color: var(--highlight); }
 .hero-sub {
@@ -437,24 +440,43 @@ img { display: block; max-width: 100%; }
 }
 
 /* =============================================
-   CLIENTS STRIP  (cream)
+   CLIENTS STRIP  (cream marquee)
 ============================================= */
-.clients-strip { background: var(--cream); border-top: 1px solid rgba(28,26,23,0.07); border-bottom: 1px solid rgba(28,26,23,0.07); }
+.clients-strip {
+  background: var(--cream);
+  border-top: 1px solid rgba(28,26,23,0.07);
+  border-bottom: 1px solid rgba(28,26,23,0.07);
+  padding: 3.5rem 0;
+  overflow: hidden;
+}
 .clients-label {
   font-size: 0.67rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: #b0ada6; text-align: center; margin-bottom: 3.5rem;
+  color: #b0ada6; text-align: center; margin-bottom: 2rem;
 }
-.clients-row {
-  display: flex; justify-content: center;
-  align-items: center; flex-wrap: wrap; gap: 2.5rem 5rem;
+.brand-marquee-cream { overflow: hidden; white-space: nowrap; }
+.brand-marquee-cream-track {
+  display: inline-flex;
+  align-items: center;
+  animation: brand-scroll 38s linear infinite;
 }
-.client-name {
-  font-family: 'Anton', sans-serif; font-size: 0.88rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(28,26,23,0.2);
-  transition: color 0.3s; cursor: default;
+.brand-marquee-cream-track span {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(28,26,23,0.65);
+  padding: 0 0.4rem;
 }
-.client-name:hover { color: rgba(28,26,23,0.55); }
+.brand-marquee-cream-track .sep {
+  color: var(--teal);
+  padding: 0 1.8rem;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+@keyframes brand-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 /* =============================================
    CTA  (dark)
@@ -592,9 +614,6 @@ footer {
 
   .team { padding: 4rem 1.5rem; }
   .team-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-
-  .clients-strip { padding: 4rem 1.5rem; }
-  .clients-row { gap: 1.2rem 2.5rem; justify-content: flex-start; }
 
   .cta { padding: 4rem 1.5rem; }
   .cta-headline { font-size: clamp(2.4rem, 9vw, 4rem); }
@@ -813,18 +832,33 @@ footer {
   </div>
 </section>
 
-<!-- CLIENTS (cream) -->
-<section class="clients-strip section-pad-sm">
-  <p class="clients-label reveal">Some Brands We've Partnered With</p>
-  <div class="clients-row reveal reveal-delay-1">
-    <span class="client-name">Coca-Cola</span>
-    <span class="client-name">First Technology</span>
-    <span class="client-name">Tiger's Milk</span>
-    <span class="client-name">Pam Golding</span>
-    <span class="client-name">Gateway</span>
-    <span class="client-name">MASA Outsourcing</span>
-    <span class="client-name">Saint &amp; Summer</span>
-    <span class="client-name">Araujo Attorneys</span>
+<!-- CLIENTS (cream marquee) -->
+<section class="clients-strip">
+  <p class="clients-label">Brands We've Partnered With</p>
+  <div class="brand-marquee-cream" aria-hidden="true">
+    <div class="brand-marquee-cream-track">
+      <span>Coca-Cola</span><span class="sep">·</span>
+      <span>Pam Golding</span><span class="sep">·</span>
+      <span>Gateway</span><span class="sep">·</span>
+      <span>Kingsley Heath</span><span class="sep">·</span>
+      <span>First Technology</span><span class="sep">·</span>
+      <span>Saint &amp; Summer</span><span class="sep">·</span>
+      <span>Tiger's Milk</span><span class="sep">·</span>
+      <span>Araujo Attorneys</span><span class="sep">·</span>
+      <span>MASA Outsourcing</span><span class="sep">·</span>
+      <span>ZIGZAG</span><span class="sep">·</span>
+      <!-- duplicate for seamless loop -->
+      <span>Coca-Cola</span><span class="sep">·</span>
+      <span>Pam Golding</span><span class="sep">·</span>
+      <span>Gateway</span><span class="sep">·</span>
+      <span>Kingsley Heath</span><span class="sep">·</span>
+      <span>First Technology</span><span class="sep">·</span>
+      <span>Saint &amp; Summer</span><span class="sep">·</span>
+      <span>Tiger's Milk</span><span class="sep">·</span>
+      <span>Araujo Attorneys</span><span class="sep">·</span>
+      <span>MASA Outsourcing</span><span class="sep">·</span>
+      <span>ZIGZAG</span><span class="sep">·</span>
+    </div>
   </div>
 </section>
 
@@ -914,6 +948,13 @@ drawer.querySelectorAll('a').forEach(a => {
     drawer.classList.remove('open');
     document.body.classList.remove('no-scroll');
   });
+});
+drawer.addEventListener('click', (e) => {
+  if (e.target === drawer) {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
 });
 </script>
 </body>
