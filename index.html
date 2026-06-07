@@ -1429,6 +1429,11 @@ async function loadProjects() {
     const projects = await res.json();
     renderWorkGrid(projects);
     setupLightbox(projects);
+    // Re-scroll to hash anchor after grid renders (grid injection causes layout shift)
+    if (window.location.hash === '#contact') {
+      const target = document.getElementById('contact');
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
   } catch (e) {
     // Fallback: show placeholder cards if fetch fails (e.g. opened as file://)
     renderFallback();
