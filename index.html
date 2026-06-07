@@ -412,30 +412,101 @@ img { display: block; max-width: 100%; }
   margin-bottom: 1.2rem;
 }
 .about-body p:last-child { margin-bottom: 0; }
-.about-stats {
-  display: flex;
-  margin-top: 3.5rem;
-  border: 1px solid rgba(28,26,23,0.1);
+/* =============================================
+   REEL  (dark — YouTube feature)
+============================================= */
+.reel-section {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.04);
 }
-.stat {
-  flex: 1;
-  padding: 1.8rem 1.5rem;
-  border-right: 1px solid rgba(28,26,23,0.1);
+.reel-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
 }
-.stat:last-child { border-right: none; }
-.stat-num {
+.reel-eyebrow {
+  font-size: 0.67rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.2rem;
+}
+.reel-headline {
   font-family: 'Anton', sans-serif;
-  font-size: 3rem;
-  color: var(--highlight);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  text-transform: uppercase;
+  color: var(--offwhite);
   line-height: 1;
-  margin-bottom: 0.35rem;
+  margin-bottom: 2.8rem;
 }
-.stat-lbl {
-  font-size: 0.66rem;
+.reel-player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+}
+.reel-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease-out), opacity 0.3s;
+}
+.reel-player:hover .reel-thumb { transform: scale(1.03); opacity: 0.85; }
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  pointer-events: none;
+}
+.reel-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  z-index: 2;
+}
+.reel-play-icon {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.25s, transform 0.25s, border-color 0.25s;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+}
+.reel-play-icon svg { width: 26px; height: 26px; fill: white; margin-left: 4px; }
+.reel-player:hover .reel-play-icon {
+  background: rgba(81,166,167,0.5);
+  border-color: var(--teal);
+  transform: scale(1.08);
+}
+.reel-play-label {
+  font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #a8a49c;
+  color: rgba(255,255,255,0.7);
 }
+.reel-channel {
+  margin-top: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.reel-channel:hover { color: var(--teal); }
+.reel-channel svg { width: 16px; height: 16px; fill: currentColor; }
 
 /* =============================================
    SERVICES  (dark surface)
@@ -1037,8 +1108,8 @@ footer {
   /* About section (cream) */
   .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-headline { font-size: clamp(2.4rem, 9vw, 4rem); }
-  .about-stats { flex-wrap: wrap; }
-  .stat { flex: 1 1 28%; min-width: 0; padding: 1.4rem 1rem; }
+  .reel-inner { padding: 0 1.5rem; }
+  .reel-headline { margin-bottom: 2rem; }
 
   .section-header { padding: 0; }
   .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -1069,8 +1140,7 @@ footer {
 @media (max-width: 600px) {
   .hero-headline { font-size: clamp(2.6rem, 13vw, 3.5rem); }
   .section-title { font-size: 2rem; }
-  .stat { flex: 1 1 45%; padding: 1.2rem 0.8rem; }
-  .stat-num { font-size: 2.4rem; }
+  .reel-play-icon { width: 64px; height: 64px; }
   .lightbox-body { padding: 1.2rem; }
   .lightbox-media.gallery-mode { height: min(50vh, 340px); }
 }
@@ -1204,21 +1274,29 @@ footer {
         <p class="reveal reveal-delay-1">We're not chasing virality. We're building the visual stories that make people stop, feel something, and remember who you are. Every project starts with one question: what does this brand need to say, and what's the most honest way to say it?</p>
         <p class="reveal reveal-delay-2">When you work with us, you're not briefing a vendor. You're getting a creative department  -  really invested in making the work land.</p>
       </div>
-      <div class="about-stats reveal reveal-delay-3">
-        <div class="stat">
-          <div class="stat-num">50+</div>
-          <div class="stat-lbl">Projects Delivered</div>
+    </div>
+  </div>
+</section>
+
+<!-- REEL (dark) -->
+<section class="reel-section section-pad">
+  <div class="reel-inner">
+    <p class="reel-eyebrow reveal">Watch Our Work</p>
+    <h2 class="reel-headline reveal reveal-delay-1">See What We Mean.</h2>
+    <div class="reel-player reveal reveal-delay-2" id="reel-player">
+      <img class="reel-thumb" src="https://img.youtube.com/vi/dSnh6WRimUY/maxresdefault.jpg" alt="Paper Plane Creative showreel">
+      <div class="reel-overlay"></div>
+      <div class="reel-play">
+        <div class="reel-play-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
         </div>
-        <div class="stat">
-          <div class="stat-num">2+</div>
-          <div class="stat-lbl">Years Active</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">9+</div>
-          <div class="stat-lbl">Brand Partners</div>
-        </div>
+        <span class="reel-play-label">Play</span>
       </div>
     </div>
+    <a href="https://youtube.com/@PaperPlaneCreativeZA" target="_blank" rel="noopener" class="reel-channel reveal reveal-delay-3">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      More on YouTube
+    </a>
   </div>
 </section>
 
@@ -1609,6 +1687,20 @@ function setupLightbox(projects) {
     }, 460);
   });
 }
+
+/* =============================================
+   REEL PLAYER
+============================================= */
+document.getElementById('reel-player').addEventListener('click', function() {
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/dSnh6WRimUY?autoplay=1&rel=0&color=white';
+  iframe.allow = 'autoplay; encrypted-media; fullscreen';
+  iframe.allowFullscreen = true;
+  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';
+  this.innerHTML = '';
+  this.appendChild(iframe);
+  this.style.cursor = 'default';
+});
 
 /* =============================================
    PAGE TRANSITIONS
