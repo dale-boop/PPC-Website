@@ -387,9 +387,15 @@ img { display: block; max-width: 100%; }
   grid-template-columns: repeat(3, 1fr);
   grid-auto-flow: dense;
   gap: 2px;
-  transition: opacity 0.3s;
 }
-.work-grid.filtering { opacity: 0.3; pointer-events: none; }
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.work-card {
+  animation: cardFadeIn 0.25s var(--ease-out) both;
+}
 
 /* Featured first item spans 2 cols and 2 rows */
 .work-card.featured {
@@ -1510,26 +1516,6 @@ function renderGrid() {
 
     grid.insertBefore(card, empty);
   });
-
-  // Staggered entrance on initial load only
-  grid.querySelectorAll('.work-card').forEach((card, i) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(16px)';
-    card.style.transition = `opacity 0.4s var(--ease-out) ${i * 0.04}s, transform 0.4s var(--ease-out) ${i * 0.04}s`;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      card.style.opacity = '1';
-      card.style.transform = 'none';
-    }));
-  });
-
-  // Clear inline styles after animation so filters are clean
-  setTimeout(() => {
-    grid.querySelectorAll('.work-card').forEach(card => {
-      card.style.opacity = '';
-      card.style.transform = '';
-      card.style.transition = '';
-    });
-  }, 1200);
 
   applyFilter();
 }
