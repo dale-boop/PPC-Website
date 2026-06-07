@@ -1462,37 +1462,27 @@ async function loadProjects() {
       }
     ];
   }
-  renderGrid(allProjects);
+  renderGrid();
   setupLightbox();
   setupFilters();
 }
 
 /* =============================================
-   RENDER GRID
+   RENDER GRID — runs once on load
 ============================================= */
-function renderGrid(projects) {
+function renderGrid() {
   const grid = document.getElementById('work-grid');
   const empty = document.getElementById('work-empty');
-  const count = document.getElementById('project-count');
 
-  // Remove all cards (keep empty state div)
   grid.querySelectorAll('.work-card').forEach(c => c.remove());
 
-  count.textContent = projects.length;
-
-  if (projects.length === 0) {
-    empty.classList.add('visible');
-    return;
-  }
-  empty.classList.remove('visible');
-
-  projects.forEach((p, i) => {
-    const isFeatured = i === 0 && activeFilter === 'all';
+  allProjects.forEach((p, i) => {
     const bg = bgMap[p.id] || 'bg-default';
 
     const card = document.createElement('article');
-    card.className = 'work-card' + (isFeatured ? ' featured' : '');
+    card.className = 'work-card' + (i === 0 ? ' featured' : '');
     card.dataset.id = p.id;
+    card.dataset.tags = (p.tags || []).join(',');
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
     card.setAttribute('aria-label', `View ${p.title} by ${p.client}`);
@@ -1508,7 +1498,6 @@ function renderGrid(projects) {
       </div>
     `;
 
-    // If a real thumbnail image path is set, show it
     if (p.thumbnail) {
       const img = document.createElement('img');
       img.className = 'card-img';
@@ -1522,20 +1511,38 @@ function renderGrid(projects) {
     grid.insertBefore(card, empty);
   });
 
-  // Re-observe newly created reveal elements (none here, cards don't use reveal class)
-  // Staggered entrance animation via CSS
+  // Staggered entrance on initial load only
   grid.querySelectorAll('.work-card').forEach((card, i) => {
     card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out)';
-    card.style.transitionDelay = `${i * 0.07}s`;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'none';
-      });
-    });
+    card.style.transform = 'translateY(16px)';
+    card.style.transition = `opacity 0.45s var(--ease-out) ${i * 0.05}s, transform 0.45s var(--ease-out) ${i * 0.05}s`;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    }));
   });
+
+  applyFilter();
+}
+
+/* =============================================
+   APPLY FILTER — show/hide, no re-render
+============================================= */
+function applyFilter() {
+  const cards = Array.from(document.querySelectorAll('#work-grid .work-card'));
+  let visible = 0;
+
+  cards.forEach((card, i) => {
+    const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+    const show = activeFilter === 'all' || tags.includes(activeFilter);
+    card.style.display = show ? '' : 'none';
+    // Featured only on first card in the full "all" view
+    card.classList.toggle('featured', i === 0 && activeFilter === 'all');
+    if (show) visible++;
+  });
+
+  document.getElementById('project-count').textContent = visible;
+  document.getElementById('work-empty').classList.toggle('visible', visible === 0);
 }
 
 /* =============================================
@@ -1548,26 +1555,11 @@ function setupFilters() {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
       if (filter === activeFilter) return;
-
       activeFilter = filter;
-
-      btns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
+      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
-
-      const grid = document.getElementById('work-grid');
-      grid.classList.add('filtering');
-
-      setTimeout(() => {
-        const filtered = filter === 'all'
-          ? allProjects
-          : allProjects.filter(p => p.tags && p.tags.includes(filter));
-        renderGrid(filtered);
-        grid.classList.remove('filtering');
-      }, 220);
+      applyFilter();
     });
   });
 }
