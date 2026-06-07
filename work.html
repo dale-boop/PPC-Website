@@ -229,6 +229,12 @@ img { display: block; max-width: 100%; }
     linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.15) 40%, transparent 100%);
   z-index: 1;
 }
+@media (max-width: 768px) {
+  #hero-slideshow .hero-img { display: none !important; }
+  #hero-slideshow {
+    background: url('assets/images/hero-work-mobile.jpg') center top / cover no-repeat;
+  }
+}
 .hero-content { position: relative; z-index: 1; }
 .hero-eyebrow {
   display: inline-flex;

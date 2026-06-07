@@ -809,7 +809,10 @@ footer {
       Add your hero image here:
       Recommended: assets/images/hero-services.jpg (min 1920×1080px)
     -->
-    <img class="hero-img" src="assets/images/hero-services.jpg" alt="" aria-hidden="true">
+    <picture style="display:contents">
+      <source media="(max-width: 768px)" srcset="assets/images/hero-service-mobile.jpg">
+      <img class="hero-img" src="assets/images/hero-services.jpg" alt="" aria-hidden="true">
+    </picture>
   </div>
   <div class="hero-content">
     <p class="eyebrow reveal">Brand Video · Photography · Audio Studio</p>

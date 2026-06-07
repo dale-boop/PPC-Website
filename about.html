@@ -662,7 +662,10 @@ footer {
       Add your hero image here:
       Recommended: assets/images/hero-about.jpg (min 1920×1080px)
     -->
-    <img class="hero-img" src="assets/images/hero-about.jpg" alt="" aria-hidden="true">
+    <picture style="display:contents">
+      <source media="(max-width: 768px)" srcset="assets/images/hero-about-mobile.jpg">
+      <img class="hero-img" src="assets/images/hero-about.jpg" alt="" aria-hidden="true">
+    </picture>
   </div>
   <div class="hero-content">
     <p class="hero-eyebrow reveal">The Studio</p>
