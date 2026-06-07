@@ -1126,11 +1126,18 @@ footer {
   footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; gap: 1.2rem; }
   .footer-links { flex-wrap: wrap; gap: 1.2rem; }
 
-  .lightbox-box { width: 100%; max-width: 100%; max-height: 100vh; border-radius: 0; margin: 0; }
+  .lightbox-box { width: 100%; max-width: 100%; max-height: 92vh; border-radius: 12px 12px 0 0; margin: 0; }
   .lightbox-overlay { align-items: flex-end; }
+  .lightbox-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8vh;
+    cursor: pointer;
+  }
   .lightbox-body { padding: 1.5rem; }
   .lightbox-title { font-size: 1.8rem; }
-  .lightbox-close { top: 0.75rem; right: 0.75rem; width: 2.4rem; height: 2.4rem; font-size: 1rem; }
+  .lightbox-close { top: 0.75rem; right: 0.75rem; width: 2.8rem; height: 2.8rem; font-size: 1rem; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
   .lightbox-media.portrait-mode { max-height: 65vh; }
   .lightbox-gallery-prev,
   .lightbox-gallery-next { width: 3rem; height: 3rem; }
@@ -1676,6 +1683,13 @@ function setupLightbox(projects) {
   closeBtn.addEventListener('click', closeLightbox);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Swipe down to close on mobile
+  let swipeStartY = 0;
+  overlay.addEventListener('touchstart', e => { swipeStartY = e.touches[0].clientY; }, { passive: true });
+  overlay.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientY - swipeStartY > 80) closeLightbox();
+  }, { passive: true });
 
   // Let's Talk — close lightbox first, then smooth-scroll to contact
   document.querySelector('.lightbox-cta').addEventListener('click', e => {
