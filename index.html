@@ -1026,6 +1026,24 @@ footer {
   cursor: pointer;
 }
 .lightbox-media:hover .lightbox-gallery-open-icon { background: rgba(81,166,167,0.4); }
+.lightbox-gallery-back {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 7;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.85);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+.lightbox-gallery-back:hover { background: rgba(81,166,167,0.5); }
 
 /* =============================================
    HAMBURGER
@@ -1174,6 +1192,7 @@ footer {
       </div>
       <div class="lightbox-gallery" id="lightbox-gallery">
         <img class="lightbox-gallery-img" id="lightbox-gallery-img" src="" alt="">
+        <button class="lightbox-gallery-back" id="gallery-back" aria-label="Close gallery">&#8592; Back</button>
         <button class="lightbox-gallery-prev" id="gallery-prev" aria-label="Previous">&#8592;</button>
         <button class="lightbox-gallery-next" id="gallery-next" aria-label="Next">&#8594;</button>
         <div class="lightbox-gallery-counter" id="gallery-counter"></div>
@@ -1685,12 +1704,23 @@ function setupLightbox(projects) {
   overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-  // Swipe down to close on mobile
+  // Swipe-down to close — only fires from media area, not from scrollable body content
   let swipeStartY = 0;
-  overlay.addEventListener('touchstart', e => { swipeStartY = e.touches[0].clientY; }, { passive: true });
-  overlay.addEventListener('touchend', e => {
-    if (e.changedTouches[0].clientY - swipeStartY > 80) closeLightbox();
+  let swipeFromMedia = false;
+  const lbBody = overlay.querySelector('.lightbox-body');
+  overlay.addEventListener('touchstart', e => {
+    swipeStartY = e.touches[0].clientY;
+    swipeFromMedia = !(lbBody && lbBody.contains(e.target));
   }, { passive: true });
+  overlay.addEventListener('touchend', e => {
+    if (swipeFromMedia && e.changedTouches[0].clientY - swipeStartY > 80) closeLightbox();
+  }, { passive: true });
+
+  // Gallery back button — exits gallery mode, returns to thumbnail view
+  document.getElementById('gallery-back').addEventListener('click', e => {
+    e.stopPropagation();
+    document.getElementById('lightbox-media').classList.remove('gallery-mode');
+  });
 
   // Let's Talk — close lightbox first, then smooth-scroll to contact
   document.querySelector('.lightbox-cta').addEventListener('click', e => {
